@@ -1,6 +1,6 @@
 import requests
 import nbaTeams as teams
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Comment
 
 us_states = [
     'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut',
@@ -10,6 +10,19 @@ us_states = [
     'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma',
     'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas',
     'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+]
+
+canadian_provinces = [
+    "Alberta",
+    "British Columbia",
+    "Manitoba",
+    "New Brunswick",
+    "Newfoundland and Labrador",
+    "Nova Scotia",
+    "Ontario",
+    "Prince Edward Island",
+    "Quebec",
+    "Saskatchewan",
 ]
 
 # Assume primaryKeys is a dictionary mapping player names to IDs
@@ -76,13 +89,14 @@ def getPlayerGameInserts(url, gameID):
 
 
 def getPlayerInfo(url):
-    # Send a GET request to the URL
+
     response = requests.get(url)
 
-    # Check if the request was successful (status code 200)
     if response.status_code == 200:
-        # Parse the HTML content of the page
+
         soup = BeautifulSoup(response.text, 'html.parser')
+
+        ############ PLAYER INFO ############
 
         team_tag = soup.find('a', {'class': 'poptip default', 'data-tip': lambda x: x and '2024' in x})
 
@@ -102,15 +116,76 @@ def getPlayerInfo(url):
         position = p_tag.text.strip()
         position = position.replace('.','')
 
-        height_tag = line.find_all_next('span')[1]
+        height_tag = line.find_all('span', class_=False)[1]
         height = height_tag.text.strip()
 
         country_tag = soup.select_one('a[href*="/friv/birthplaces.fcgi?country="]')
         country = country_tag.text.strip()
         if country in us_states:
             country = country + ' USA'
+        elif country in canadian_provinces:
+            country = 'Canada'
 
         date_of_birth = line.find_next('span', {'id': 'necro-birth'}).get('data-birth')
+
+
+
+        salaryList = []
+        yearList = ['2023-24', '2024-25', '2025-26', '2026-27', '2027-28', '2028-29']
+        contractYearList= []
+        contractOptionList = []
+        contractLength = None
+        contractMoney = None
+
+        comments = soup.find_all(string=lambda text: isinstance(text, Comment) and '<div class="section_content" id="div_contract">' in text)
+
+        for comment in comments:
+            comment_soup = BeautifulSoup(comment, 'html.parser')
+
+            ############ CONTRACT INFO ############
+
+            li_element = comment_soup.find('li', string=lambda text: 'Signed' in text)
+            contract = li_element.text.strip()
+            contract = contract.split(' ')[1]
+
+            if contract != 'rookie' and contract != 'extension' and contract != 'two-way':
+                contractLength = contract.split('/')[0].replace('-yr', '')
+                contractLength = int(contractLength)
+                contractMoney = contract.split('/')[1].replace('$', '').replace('M', '000000')
+                contractMoney = float(contractMoney)
+            else:
+                if contract == 'extension':
+                    contractLength = 'extension'
+                    contractMoney = 'extension'
+                elif contract == 'rookie':
+                    contractLength = 'rookie'
+                    contractMoney = 'rookie'
+                elif contract == 'two-way':
+                    contractLength = 'two-way'
+                    contractMoney = 'two-way'
+                else:
+                    contractLength = None
+                    contractMoney = None
+
+
+            ############ CONTRACT YEAR INFO ############
+
+            td_elements = comment_soup.find_all('td')
+            
+            for td in td_elements:
+                span = td.find('span')
+                if span is not None:
+
+                    if span.get('class') == ['salary-pl']:
+                        contractOptionList.append('Player Option')
+                    elif span.get('class') == ['salary-tm']:
+                        contractOptionList.append('Team Option')
+                    else:
+                        contractOptionList.append('No Option')
+        
+                    salary = span.text.strip()
+                    salary = salary.replace('$', '').replace(',', '')
+                    salaryList.append(salary)
 
         name_parts = player_name.split()
 
@@ -120,16 +195,33 @@ def getPlayerInfo(url):
         playerID = url.split('/')[-1].replace('.html', '')
         playerID = primaryKeys[playerID]
 
-        # Define the SQL insert statement
-        sql_insert = (
-            f"INSERT INTO your_table_name "
-            f"(playerID, firstName, lastName, team, teamID, position, country, height, dateOfBirth) "
+        for i, salary in enumerate(salaryList, start=1):
+            sql_insert = (
+            f"INSERT INTO contract_year "
+            f"(id_contract_year, id_contract, year, money) "
             f"VALUES "
-            f"({playerID}, '{first_name}', '{last_name}', '{team}', {teamID}, '{position}', '{country}', '{height}', '{date_of_birth}');\n"
+            f"({i}, '{playerID}', '{yearList[i - 1]}', '{salary}');\n"
+            )
+            contractYearList.append(sql_insert)
+
+        contractInfo = (
+            f"INSERT INTO player_contract "
+            f"(id_contract, money, length "
+            f"VALUES "
+            f"({playerID}, '{contractMoney}', '{contractLength}');\n"
         )
-        return sql_insert
+
+        # Define the SQL insert statement
+        playerInfo = (
+            f"INSERT INTO player "
+            f"(id_player, id_team, id_contract, id_player_stats, name, surname, date_of_birth, nationality, height) "
+            f"VALUES "
+            f"({playerID}, '{teamID}', '{playerID}', '{playerID}', {first_name}, '{last_name}', '{date_of_birth}', '{country}', '{height}');\n"
+        )
+        print(first_name, last_name)
+        return playerInfo, contractInfo, contractYearList
     else:
         print(f"Failed to retrieve the webpage. Status code: {response.status_code}")
 # Example usage
 #getPlayerGameInserts('https://www.basketball-reference.com/boxscores/202312020CHO.html', '202312020CHO')
-getPlayerInfo("https://www.basketball-reference.com/players/c/cabocbr01.html")
+#getPlayerInfo("https://www.basketball-reference.com/players/a/antetgi01.html")
