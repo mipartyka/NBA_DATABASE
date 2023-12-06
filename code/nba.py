@@ -1,12 +1,23 @@
 import requests
-from bs4 import BeautifulSoup, NavigableString
+import nbaTeams as teams
+from bs4 import BeautifulSoup
+
+us_states = [
+    'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut',
+    'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa',
+    'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan',
+    'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
+    'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma',
+    'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas',
+    'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+]
 
 # Assume primaryKeys is a dictionary mapping player names to IDs
 # Initialize an empty dictionary if not already defined
 primaryKeys = {}
 
 # Open the file in read mode
-with open('IDMap.txt', 'r') as f:
+with open('../IDMap.txt', 'r') as f:
     for line in f:
         # Split the line into key and value
         key, value = line.strip().split(': ')
@@ -73,38 +84,52 @@ def getPlayerInfo(url):
         # Parse the HTML content of the page
         soup = BeautifulSoup(response.text, 'html.parser')
 
-        # Find the line containing 'Pronunciation'
-        pronunciation_line = soup.find('strong', text='Pronunciation')
+        team_tag = soup.find('a', {'class': 'poptip default', 'data-tip': lambda x: x and '2024' in x})
 
-        position_line = soup.find(lambda tag: tag.name == 'strong' and 'Position:' in tag.get_text())
+        teamYears = team_tag.get('data-tip') if team_tag and '2024' in team_tag.get('data-tip', '') else None
+        team = teamYears.split(',')[0] if teamYears else None
+        teamID = teams.nba_teams[team] if team else None
 
-        # Find the player's position
-        if position_line is not None:
-            next_sibling = position_line.next_sibling
-            while isinstance(next_sibling, NavigableString):
-                next_sibling = next_sibling.next_sibling
-            position = next_sibling.get_text(strip=True)
-        else:
-            print("No element found with 'Position:'.")
-            position = None
-        # Find the player name
-        player_name = pronunciation_line.find_next('strong').text.strip()
+        player_tag = soup.find('div', class_='breadcrumbs').find('strong')
+        player_name = player_tag.text.strip()
 
-        # Find the player's height and weight
-        height_weight = pronunciation_line.find_next('p').find_next('p').text.strip()
-        height = height_weight.split(',')[0].strip()
-        weight = height_weight.split(',')[1].strip()
+        line = soup.find('div', {'id': 'info', 'class': 'players'})
 
-        # Find the player's date of birth
-        date_of_birth = pronunciation_line.find_next('span', {'id': 'necro-birth'}).get('data-birth')
-        # Print the extracted information
-        print(f"Name: {player_name}")
-        print(f"Position: {position}")
-        print(f"Height: {height}")
-        print(f"Weight: {weight}")
-        print(f"Date of birth: {date_of_birth}")
+        position_line = soup.find('h3', string=lambda s: s and 'position' in s.lower())
+
+        p_tag = position_line.find_next('p')
+
+        position = p_tag.text.strip()
+        position = position.replace('.','')
+
+        height_tag = line.find_all_next('span')[1]
+        height = height_tag.text.strip()
+
+        country_tag = soup.select_one('a[href*="/friv/birthplaces.fcgi?country="]')
+        country = country_tag.text.strip()
+        if country in us_states:
+            country = country + ' USA'
+
+        date_of_birth = line.find_next('span', {'id': 'necro-birth'}).get('data-birth')
+
+        name_parts = player_name.split()
+
+        first_name = name_parts[0]
+        last_name = name_parts[-1]
+
+        playerID = url.split('/')[-1].replace('.html', '')
+        playerID = primaryKeys[playerID]
+
+        # Define the SQL insert statement
+        sql_insert = (
+            f"INSERT INTO your_table_name "
+            f"(playerID, firstName, lastName, team, teamID, position, country, height, dateOfBirth) "
+            f"VALUES "
+            f"({playerID}, '{first_name}', '{last_name}', '{team}', {teamID}, '{position}', '{country}', '{height}', '{date_of_birth}');\n"
+        )
+        return sql_insert
     else:
         print(f"Failed to retrieve the webpage. Status code: {response.status_code}")
 # Example usage
 #getPlayerGameInserts('https://www.basketball-reference.com/boxscores/202312020CHO.html', '202312020CHO')
-getPlayerInfo("https://www.basketball-reference.com/players/g/goberru01.html")
+getPlayerInfo("https://www.basketball-reference.com/players/c/cabocbr01.html")
