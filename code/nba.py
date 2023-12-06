@@ -1,6 +1,6 @@
 import requests
 import nbaTeams as teams
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Comment
 
 us_states = [
     'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut',
@@ -10,6 +10,19 @@ us_states = [
     'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma',
     'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas',
     'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+]
+
+canadian_provinces = [
+    "Alberta",
+    "British Columbia",
+    "Manitoba",
+    "New Brunswick",
+    "Newfoundland and Labrador",
+    "Nova Scotia",
+    "Ontario",
+    "Prince Edward Island",
+    "Quebec",
+    "Saskatchewan",
 ]
 
 # Assume primaryKeys is a dictionary mapping player names to IDs
@@ -102,15 +115,36 @@ def getPlayerInfo(url):
         position = p_tag.text.strip()
         position = position.replace('.','')
 
-        height_tag = line.find_all_next('span')[1]
+        height_tag = line.find_all('span', class_=False)[1]
         height = height_tag.text.strip()
 
         country_tag = soup.select_one('a[href*="/friv/birthplaces.fcgi?country="]')
         country = country_tag.text.strip()
         if country in us_states:
             country = country + ' USA'
+        elif country in canadian_provinces:
+            country = 'Canada'
 
         date_of_birth = line.find_next('span', {'id': 'necro-birth'}).get('data-birth')
+
+        salaryList = []
+
+        comments = soup.find_all(string=lambda text: isinstance(text, Comment) and '<div class="section_content" id="div_contract">' in text)
+
+        for comment in comments:
+            # Parse the comment as HTML
+            comment_soup = BeautifulSoup(comment, 'html.parser')
+
+            # Find all <td> elements within the comment
+            td_elements = comment_soup.find_all('td')
+            
+            for td in td_elements:
+                # Check if the <td> element contains a <span> element
+                span = td.find('span')
+                if span is not None:
+                    salary = span.text.strip()
+                    salary = salary.replace('$', '').replace(',', '')
+                    salaryList.append(salary)
 
         name_parts = player_name.split()
 
@@ -119,6 +153,8 @@ def getPlayerInfo(url):
 
         playerID = url.split('/')[-1].replace('.html', '')
         playerID = primaryKeys[playerID]
+
+        print(salaryList)
 
         # Define the SQL insert statement
         sql_insert = (
@@ -132,4 +168,4 @@ def getPlayerInfo(url):
         print(f"Failed to retrieve the webpage. Status code: {response.status_code}")
 # Example usage
 #getPlayerGameInserts('https://www.basketball-reference.com/boxscores/202312020CHO.html', '202312020CHO')
-getPlayerInfo("https://www.basketball-reference.com/players/c/cabocbr01.html")
+getPlayerInfo("https://www.basketball-reference.com/players/c/curryst01.html")
