@@ -227,15 +227,15 @@ def getPlayerInfo(url):
         for i, salary in enumerate(salaryList, start=1):
             sql_insert = (
             f"INSERT INTO contract_year "
-            f"(id_contract_year, id_contract, year, money) "
+            f"(id_contract_year, id_contract, year, money, option) "
             f"VALUES "
-            f"({i}, '{playerID}', '{yearList[i - 1]}', '{salary}');\n"
+            f"({i}, '{playerID}', '{yearList[i - 1]}', '{salary}', '{contractOptionList[i]}');\n"
             )
             contractYearList.append(sql_insert)
 
         contractInfo = (
             f"INSERT INTO player_contract "
-            f"(id_contract, money, length "
+            f"(id_contract, money, length, "
             f"VALUES "
             f"({playerID}, '{contractMoney}', '{contractLength}');\n"
         )
@@ -243,9 +243,9 @@ def getPlayerInfo(url):
         # Define the SQL insert statement
         playerInfo = (
             f"INSERT INTO player "
-            f"(id_player, id_team, id_contract, id_player_stats, name, surname, date_of_birth, nationality, height) "
+            f"(id_player, id_team, id_contract, id_player_stats, name, surname, date_of_birth, nationality, position, height) "
             f"VALUES "
-            f"({playerID}, '{teamID}', '{playerID}', '{playerID}', {first_name}, '{last_name}', '{date_of_birth}', '{country}', '{height}');\n"
+            f"({playerID}, '{teamID}', '{playerID}', '{playerID}', {first_name}, '{last_name}', '{date_of_birth}', '{country}', '{position}' '{height}');\n"
         )
         print(first_name, last_name)
         return playerInfo, contractInfo, contractYearList
