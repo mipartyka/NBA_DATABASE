@@ -222,6 +222,9 @@ def getPlayerInfo(url):
         return playerInfo, contractInfo, contractYearList
     else:
         print(f"Failed to retrieve the webpage. Status code: {response.status_code}")
+
+
+
 # Example usage
 #getPlayerGameInserts('https://www.basketball-reference.com/boxscores/202312020CHO.html', '202312020CHO')
 #getPlayerInfo("https://www.basketball-reference.com/players/a/antetgi01.html")

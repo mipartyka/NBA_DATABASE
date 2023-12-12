@@ -51,7 +51,7 @@ for letter in letters:
     else:
         print(f"Failed to retrieve the webpage. Status code: {response.status_code}")
 
-with open('output.txt', 'w') as f:
+with open('IDMap.txt', 'w') as f:
     for key, value in player_map.items():
         # Write the key-value pair to the file
         f.write(f"{key}: {value}\n")
