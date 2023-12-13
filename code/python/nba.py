@@ -76,9 +76,9 @@ def getGameInserts(url, gameID, type = 'regular season game'):
 
                             # Generate the SQL INSERT statement
                             # Corrected the line below to properly join the gameID
-                            columns = ', '.join(['id_game'] + list(player_data.keys()))
-                            values = ', '.join([gameID] + [f"'{value}'" for value in player_data.values()])
-                            sql_insert = f"INSERT INTO your_table_name ({columns}) VALUES ({values});\n"
+                                columns = ', '.join(['id_game'] + list(player_data.keys()))
+                                values = ', '.join([f"'{gameID}'"] + [f"'{value}'::TIME" if key == 'mp' else f"{value.replace('+', '')}" if key == 'plus_minus' else f"'{value}'" if value == 'N/A' else f"{value}" for key, value in player_data.items()])
+                                sql_insert = f"INSERT INTO player_game ({columns}) VALUES ({values});\n"
 
                             # Write the SQL INSERT statement to the file
                             file.write(sql_insert)
@@ -111,7 +111,7 @@ def getGameInserts(url, gameID, type = 'regular season game'):
                 f"INSERT INTO game "
                 f"(id_game, id_away_team, id_home_team, date, type) "
                 f"VALUES "
-                f"('{gameID}', '{away_team_id}', '{home_team_id}', 'TO_DATE({game_date})', '{type}');\n"
+                f"('{gameID}', {away_team_id}, {home_team_id}, TO_DATE('{game_date}', 'Month DD, YYYY'), '{type}');\n"
             )
     else:
         print(f"Failed to retrieve the webpage. Status code: {response.status_code}")
@@ -131,7 +131,8 @@ def getPlayerInfo(url):
 
         teamYears = team_tag.get('data-tip') if team_tag and '2024' in team_tag.get('data-tip', '') else None
         team = teamYears.split(',')[0] if teamYears else None
-        teamID = teams.nba_teams[team] if team else None
+        teamID = teams.nba_teams[team] if team else 'NULL'
+        print(team)
 
         player_tag = soup.find('div', class_='breadcrumbs').find('strong')
         player_name = player_tag.text.strip()
@@ -229,7 +230,7 @@ def getPlayerInfo(url):
             f"INSERT INTO contract_year "
             f"(id_contract_year, id_contract, year, money, option) "
             f"VALUES "
-            f"({i}, '{playerID}', '{yearList[i - 1]}', '{salary}', '{contractOptionList[i]}');\n"
+            f"({i}, {playerID}, '{yearList[i - 1]}', {salary}, '{contractOptionList[i-1]}');\n"
             )
             contractYearList.append(sql_insert)
 
@@ -245,7 +246,7 @@ def getPlayerInfo(url):
             f"INSERT INTO player "
             f"(id_player, id_team, id_contract, id_player_stats, name, surname, date_of_birth, nationality, position, height) "
             f"VALUES "
-            f"({playerID}, '{teamID}', '{playerID}', '{playerID}', {first_name}, '{last_name}', '{date_of_birth}', '{country}', '{position}' '{height}');\n"
+            f"({playerID}, {teamID}, {playerID}, {playerID}, '{first_name}', '{last_name}', '{date_of_birth}'::DATE, '{country}', '{position}' '{height}');\n"
         )
         print(first_name, last_name)
         return playerInfo, contractInfo, contractYearList
