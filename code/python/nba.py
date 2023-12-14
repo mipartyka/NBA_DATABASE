@@ -1,6 +1,7 @@
 import requests
 import nbaTeams as teams
 from bs4 import BeautifulSoup, Comment
+import re
 
 us_states = [
     'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut',
@@ -71,13 +72,13 @@ def getGameInserts(url, gameID, type = 'regular season game'):
                             # Find and store the values for the specified data-stat attributes
                             for stat in ["mp", "fg", "fga", "fg_pct", "fg3", "fg3a", "fg3_pct", "ft", "fta", "ft_pct", "orb", "drb", "trb", "ast", "stl", "blk", "tov", "pf", "pts", "plus_minus"]:
                                 stat_value = player_row.find('td', {'data-stat': stat})
-                                stat_text = stat_value.text.strip() if stat_value else 'N/A'
+                                stat_text = stat_value.text.strip() if stat_value else 'NULL'
                                 player_data[stat] = stat_text
 
                             # Generate the SQL INSERT statement
                             # Corrected the line below to properly join the gameID
                                 columns = ', '.join(['id_game'] + list(player_data.keys()))
-                                values = ', '.join([f"'{gameID}'"] + [f"'{value}'::TIME" if key == 'mp' else f"{value.replace('+', '')}" if key == 'plus_minus' else f"'{value}'" if value == 'N/A' else f"{value}" for key, value in player_data.items()])
+                                values = ', '.join([f"'{gameID}'"] + [f"'{value}'::TIME" if key == 'mp' and value != 'NULL' else f"0{value}" if 'pct' in key and f"{value}".startswith('.') else f"{value.replace('+', '')}" if key == 'plus_minus' else f"{value}" if value == 'NULL' else f"{value}" for key, value in player_data.items()])
                                 sql_insert = f"INSERT INTO player_game ({columns}) VALUES ({values});\n"
 
                             # Write the SQL INSERT statement to the file
@@ -117,7 +118,7 @@ def getGameInserts(url, gameID, type = 'regular season game'):
         print(f"Failed to retrieve the webpage. Status code: {response.status_code}")
 
 
-def getPlayerInfo(url):
+def getPlayerInfo(url, contractYearID):
 
     response = requests.get(url)
 
@@ -132,7 +133,6 @@ def getPlayerInfo(url):
         teamYears = team_tag.get('data-tip') if team_tag and '2024' in team_tag.get('data-tip', '') else None
         team = teamYears.split(',')[0] if teamYears else None
         teamID = teams.nba_teams[team] if team else 'NULL'
-        print(team)
 
         player_tag = soup.find('div', class_='breadcrumbs').find('strong')
         player_name = player_tag.text.strip()
@@ -174,28 +174,57 @@ def getPlayerInfo(url):
 
             ############ CONTRACT INFO ############
 
-            li_element = comment_soup.find('li', string=lambda text: 'Signed' in text)
-            contract = li_element.text.strip()
-            contract = contract.split(' ')[1]
+            try:
 
-            if contract != 'rookie' and contract != 'extension' and contract != 'two-way':
-                contractLength = contract.split('/')[0].replace('-yr', '')
-                contractLength = int(contractLength)
-                contractMoney = contract.split('/')[1].replace('$', '').replace('M', '000000')
-                contractMoney = float(contractMoney)
-            else:
-                if contract == 'extension':
-                    contractLength = 'extension'
-                    contractMoney = 'extension'
-                elif contract == 'rookie':
-                    contractLength = 'rookie'
-                    contractMoney = 'rookie'
-                elif contract == 'two-way':
-                    contractLength = 'two-way'
-                    contractMoney = 'two-way'
-                else:
-                    contractLength = None
-                    contractMoney = None
+                li_element = comment_soup.find('li', string=lambda text: 'Signed' in text)
+                if li_element:
+                    contract = li_element.text.strip()
+                    if contract.split(' ')[2] != 'minimum' and '/' in contract or 'two-way' in contract or 'Exhibit' in contract or 'rookie' in contract or 'extension' in contract:
+                        contract = contract.split(' ')[1]
+                    elif contract.split(' ')[1] == 'minimum':
+                        contract = contract.split(' ')[1]
+                        contractLength = 'minimum'
+                        contractMoney = 'minimum'
+                    else:
+                        contract = contract.split(' ')
+                        contractLength = contract[1].replace('-yr', '')
+                        contract = contract[2]
+
+
+                    if 'MM' in contract or contract != 'rookie' and contract != 'extension' and 'two-way' not in contract and contract != 'minimum' and contract != 'Exhibit':
+                        contractMoney = contract.replace('$', '')
+                        if 'MM' in contractMoney:
+                            contractMoney = contractMoney.replace('MM', '000000')
+                        elif '/' not in contractMoney:
+                            contractMoney = contractMoney.replace('M', '000000').replace('$', '')
+                        else:
+                            contractLength = contract.split('/')[0].replace('-yr', '')
+                            contractMoney = contract.split('/')[1].replace('$', '')
+                            contractMoney = contractMoney.replace('M', '000000')
+                        contractMoney = float(contractMoney)
+                        contractLength = int(contractLength)
+                    else:
+                        if contract == 'extension':
+                            contractLength = 'extension'
+                            contractMoney = 'extension'
+                        elif contract == 'rookie':
+                            contractLength = 'rookie'
+                            contractMoney = 'rookie'
+                        elif 'two-way' in contract:
+                            contractLength = 'two-way'
+                            contractMoney = 'two-way'
+                        elif contract == 'minimum':
+                            contractLength = contractLength
+                            contractMoney = 'minimum'
+                        elif contract == 'Exhibit':
+                            contractLength = 'Exhibit'
+                            contractMoney = 'Exhibit'
+                        else:
+                            contractLength = 'NULL'
+                            contractMoney = 'NULL'
+            except Exception:
+                contractLength = 'no information'
+                contractMoney = 'no information'
 
 
             ############ CONTRACT YEAR INFO ############
@@ -220,7 +249,10 @@ def getPlayerInfo(url):
         name_parts = player_name.split()
 
         first_name = name_parts[0]
-        last_name = name_parts[-1]
+        if len(name_parts) > 2 and (name_parts[-1] == 'Jr.' or name_parts[-1] == 'Jr' or name_parts[-1] == 'Junior' or re.match(r'^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$', name_parts[-1])):
+            last_name = name_parts[-2] + ' ' + name_parts[-1]
+        else:
+            last_name = name_parts[-1]
 
         playerID = url.split('/')[-1].replace('.html', '')
         playerID = primaryKeys[playerID]
@@ -230,31 +262,92 @@ def getPlayerInfo(url):
             f"INSERT INTO contract_year "
             f"(id_contract_year, id_contract, year, money, option) "
             f"VALUES "
-            f"({i}, {playerID}, '{yearList[i - 1]}', {salary}, '{contractOptionList[i-1]}');\n"
+            f"({contractYearID}, {playerID}, '{yearList[i - 1]}', {salary}, '{contractOptionList[i-1]}');\n"
             )
             contractYearList.append(sql_insert)
-
-        contractInfo = (
-            f"INSERT INTO player_contract "
-            f"(id_contract, money, length, "
-            f"VALUES "
-            f"({playerID}, '{contractMoney}', '{contractLength}');\n"
-        )
+            contractYearID += 1
+        if contractLength == 'NULL':
+            contractInfo = (
+                f"INSERT INTO player_contract "
+                f"(id_contract, money, length) "
+                f"VALUES "
+                f"({playerID}, '{contractMoney}', '{contractLength}');\n"
+            )
+        else:
+            contractInfo = (
+                f"INSERT INTO player_contract "
+                f"(id_contract, money, length) "
+                f"VALUES "
+                f"({playerID}, NULL, NULL);\n"
+            )
 
         # Define the SQL insert statement
         playerInfo = (
             f"INSERT INTO player "
             f"(id_player, id_team, id_contract, id_player_stats, name, surname, date_of_birth, nationality, position, height) "
             f"VALUES "
-            f"({playerID}, {teamID}, {playerID}, {playerID}, '{first_name}', '{last_name}', '{date_of_birth}'::DATE, '{country}', '{position}' '{height}');\n"
+            f"({playerID}, {teamID}, {playerID}, {playerID}, '{first_name}', '{last_name}', '{date_of_birth}'::DATE, '{country}', '{position}', '{height}');\n"
         )
         print(first_name, last_name)
         return playerInfo, contractInfo, contractYearList
     else:
         print(f"Failed to retrieve the webpage. Status code: {response.status_code}")
 
+def update_player_team(url, teamID):
+
+    # Send an HTTP request to the URL
+    response = requests.get(url)
+
+    print(response.status_code)
+    # Parse the HTML content of the page using BeautifulSoup
+    soup = BeautifulSoup(response.text, 'html.parser')
+
+    # Find the line with the specified caption
+    roster_table_caption = soup.find('caption', string='Roster Table')
+
+    # Initialize a list to store href values
+    href_list = []
+    sqlInsertList = []
+    playerIDList = []
+    missingPlayersList = []
+
+    # If the caption is found, proceed to extract href from each line
+    if roster_table_caption:
+        # Find all rows (tr) in the table
+        rows = roster_table_caption.find_next('table').find_all('tr')
+        
+        # Loop through each row
+        for row in rows:
+            # Find the link (a) within the row
+            link = row.find('a', href=True)
+            
+            # If a link is found, append the href to the list
+            if link and link['href'] not in href_list:
+                href_list.append(link['href'])
+            try:
+                href_list = list(set(href_list))
+                for(href) in href_list:
+                    playerID = href.split('/')[-1].replace('.html', '')
+                    playerID = primaryKeys[playerID]
+                    if playerID not in playerIDList:
+                        playerIDList.append(playerID)
+            except Exception:
+                if playerID not in missingPlayersList:
+                    missingPlayersList.append(playerID)
+                    print(playerID + ' not found')
+        for playerID in playerIDList:
+            sql_insert = (
+                f"UPDATE player "
+                f"SET id_team = {teamID} "
+                f"WHERE id_player = {playerID};\n"
+            )
+            sqlInsertList.append(sql_insert)
+    return sqlInsertList, missingPlayersList
+
+
 
 
 # Example usage
-getGameInserts('https://www.basketball-reference.com/boxscores/202312020CHO.html', '202312020CHO')
-#getPlayerInfo("https://www.basketball-reference.com/players/a/antetgi01.html")
+# getGameInserts('https://www.basketball-reference.com/boxscores/202312020CHO.html', '202312020CHO')
+# getPlayerInfo("https://www.basketball-reference.com/players/b/bullore01.html", 0)
+# update_player_team('https://www.basketball-reference.com/teams/BOS/2024.html', 2)

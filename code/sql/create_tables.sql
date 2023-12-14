@@ -5,12 +5,14 @@ set search_path to nba_project;
 CREATE TABLE team (
     id_team INT PRIMARY KEY,
     id_team_stats INT,
-    id_coach INT,
+    -- id_coach INT,
+    coach VARCHAR(255),
     name VARCHAR(255),
     city VARCHAR(255),
     arena VARCHAR(255),
     conference VARCHAR(255),
-    division VARCHAR(255)
+    division VARCHAR(255),
+    short_name VARCHAR(255)
 );
 
 -- Create player table
@@ -24,29 +26,30 @@ CREATE TABLE player (
     date_of_birth DATE,
     nationality VARCHAR(255),
     position VARCHAR(255)
+    height VARCHAR(255),
 );
 
 -- Create player_stats table
 CREATE TABLE player_stats (
     id_player_stats INT PRIMARY KEY,
     games INT,
-    points INT,
-    rebounds INT,
-    assists INT,
-    steals INT,
-    minutes INT,
-    fouls INT,
-    fgm INT,
+    pts INT,
+    trb INT,
+    ast INT,
+    stl INT,
+    mp TIME,
+    pf INT,
+    fg INT,
     fga INT,
-    fg_percent DOUBLE precision,
-    three_p INT,
-    three_pa INT,
-    three_p_percent DOUBLE precision,
+    fg_pct DOUBLE precision,
+    fg3 INT,
+    fg3a INT,
+    fg3_pct DOUBLE precision,
     ft INT,
     fta INT,
-    ft_percent DOUBLE precision,
-    o_rebounds INT,
-    d_rebounds INT,
+    ft_pct DOUBLE precision,
+    orb INT,
+    drb INT,
     turnovers INT,
     plus_minus INT
 );
@@ -54,91 +57,91 @@ CREATE TABLE player_stats (
 -- Create team_stats table
 CREATE TABLE team_stats (
     id_team_stats INT PRIMARY KEY,
-    points INT,
-    rebounds INT,
-    assists INT,
-    steals INT,
-    fgm INT,
+    pts INT,
+    trb INT,
+    ast INT,
+    stl INT,
+    fg INT,
     fga INT,
-    fg_percent DOUBLE precision,
-    three_p INT,
-    three_pa INT,
-    three_p_percent DOUBLE precision,
+    fg_pct DOUBLE precision,
+    fg3 INT,
+    fg3a INT,
+    fg3_pct DOUBLE precision,
     ft INT,
     fta INT,
-    ft_percent DOUBLE precision,
-    o_rebounds INT,
-    d_rebounds INT,
-    turnovers INT
+    ft_pct DOUBLE precision,
+    orb INT,
+    drb INT,
+    turnovers INT,
 );
 
 -- Create player_contract table
 CREATE TABLE player_contract (
     id_contract INT PRIMARY KEY,
     money DECIMAL(15, 2), -- Adjust precision and scale as needed
-    sign_year INT,
     length INT,
-    contract_type VARCHAR(255),
-    contract_option VARCHAR(255)
 );
 
 -- Create contract_year table
 CREATE TABLE contract_year (
     id_contract_year INT PRIMARY KEY,
     id_contract INT,
-    year INT,
+    year VARCHAR(255),
     money DECIMAL(15, 2) -- Adjust precision and scale as needed
+    option VARCHAR(255)
 );
 
 -- Create player_game table
 CREATE TABLE player_game (
-    id_game INT,
+    id_game VARCHAR(255),
     id_player INT,
-    points INT,
-    rebounds INT,
-    assists INT,
-    steals INT,
-    fgm INT,
+    pts INT,
+    trb INT,
+    ast INT,
+    stl INT,
+    mp TIME,
+    pf INT,
+    fg INT,
     fga INT,
-    fg_percent DOUBLE precision,
-    three_p INT,
-    three_pa INT,
-    three_p_percent DOUBLE precision,
+    fg_pct DOUBLE precision,
+    fg3 INT,
+    fg3a INT,
+    fg3_pct DOUBLE precision,
     ft INT,
     fta INT,
-    ft_percent DOUBLE precision,
-    o_rebounds INT,
-    d_rebounds INT,
+    ft_pct DOUBLE precision,
+    orb INT,
+    drb INT,
     turnovers INT,
     PRIMARY KEY (id_game, id_player)
 );
 
 -- Create team_game table
 CREATE TABLE team_game (
-    id_game INT,
+    id_game VARCHAR(255),
     id_team INT,
-    points INT,
-    rebounds INT,
-    assists INT,
-    steals INT,
-    fgm INT,
+    pts INT,
+    trb INT,
+    ast INT,
+    stl INT,
+    fg INT,
     fga INT,
-    fg_percent DOUBLE precision,
-    three_p INT,
-    three_pa INT,
-    three_p_percent DOUBLE precision,
+    fg_pct DOUBLE precision,
+    fg3 INT,
+    fg3a INT,
+    fg3_pct DOUBLE precision,
     ft INT,
     fta INT,
-    ft_percent DOUBLE precision,
-    o_rebounds INT,
-    d_rebounds INT,
+    ft_pct DOUBLE precision,
+    orb INT,
+    drb INT,
     turnovers INT,
     PRIMARY KEY (id_game, id_team)
 );
 
 -- Create game table
 CREATE TABLE game (
-    id_game INT PRIMARY KEY,
+    id_game VARCHAR(255) PRIMARY KEY,
     id_home_team INT,
     id_away_team INT,
     game_date DATE,
@@ -146,11 +149,11 @@ CREATE TABLE game (
 );
 
 -- Create coach table
-CREATE TABLE coach (
-    id_coach INT PRIMARY KEY,
-    name VARCHAR(255),
-    surname VARCHAR(255)
-);
+-- CREATE TABLE coach (
+--     id_coach INT PRIMARY KEY,
+--     name VARCHAR(255),
+--     surname VARCHAR(255)
+-- );
 
 
 -- Add foreign key constraints

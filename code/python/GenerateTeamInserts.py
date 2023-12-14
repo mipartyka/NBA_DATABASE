@@ -9,6 +9,6 @@ with open('../../sqlGenerated/TeamInserts.sql', 'a') as file:
     for i in range(1, 31):
         team = reversedTeams[i]
         file.write(f"INSERT INTO team "
-        f"(id_team, id_team_stats, id_contract, coach, name, city, arena, conference, division, short_name) "
+        f"(id_team, id_team_stats, coach, name, city, arena, conference, division, short_name) "
         f"VALUES "
-        f"({i}, '{i}', '{nt.nba_coaches[i]}', '{team}', '{nt.team_cities[i]}', '{nt.nba_arenas[i]}', '{nt.division_conference[nt.nba_divisions[i]]}', '{nt.nba_divisions[i]}', '{nt.team_short_names[i]}');\n")
+        f"({i}, {i}, '{nt.nba_coaches[i]}', '{team}', '{nt.team_cities[i]}', '{nt.nba_arenas[i]}', '{nt.division_conference[nt.nba_divisions[i]]}', '{nt.nba_divisions[i]}', '{nt.team_short_names[i]}');\n")
