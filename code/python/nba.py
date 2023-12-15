@@ -40,7 +40,17 @@ with open('../../IDMap.txt', 'r') as f:
         # Add the key-value pair to the dictionary
         primaryKeys[key] = int(value)
 
+def convert_time(time_str):
+    minutes, seconds = map(int, time_str.split(':'))
+    hours = minutes // 60
+    minutes = minutes % 60
+    return f'{hours:02d}:{minutes:02d}:{seconds:02d}'
+
 def getGameInserts(url, gameID, type = 'regular season game'):
+
+    sqlInsertListGame = []
+    sqlInsertListPlayerGame = []
+
     # Send a GET request to the URL
     response = requests.get(url)
 
@@ -50,41 +60,48 @@ def getGameInserts(url, gameID, type = 'regular season game'):
         soup = BeautifulSoup(response.text, 'html.parser')
 
         # Find every 8th <th> element for "Basic Box Score Stats"
-        basic_stats_headers = soup.find_all('th', {'data-stat': 'header_tmp', 'colspan': '20', 'class': 'over_header center'})[::8]
+        basic_stats_headers = soup.find_all('th', {'data-stat': 'header_tmp', 'colspan': '20', 'class': 'over_header center'})[::7]
 
-        with open('../../sqlGenerated/InsertPlayerGame_' + gameID + '.sql', 'w') as file:
-            for basic_stats_header in basic_stats_headers:
-                # Navigate to the corresponding <tbody> element for each header
-                tbody = basic_stats_header.find_next('tbody')
+        for basic_stats_header in basic_stats_headers:
+            # Navigate to the corresponding <tbody> element for each header
+            tbody = basic_stats_header.find_next('tbody')
 
-                if tbody:
-                    # Find all player rows within the targeted tbody
-                    player_rows = tbody.find_all('tr')
+            if tbody:
+                # Find all player rows within the targeted tbody
+                player_rows = tbody.find_all('tr')
 
-                    for player_row in player_rows:
-                        # Check if player row contains data-append-csv attribute
-                        if player_row.find('th', {'data-append-csv': True}):
-                            playerID = primaryKeys[player_row.find('th', {'data-append-csv': True}).get('data-append-csv')]
+                for player_row in player_rows:
+                    # Check if player row contains data-append-csv attribute
+                    if player_row.find('th', {'data-append-csv': True}):
+                        playerID = primaryKeys[player_row.find('th', {'data-append-csv': True}).get('data-append-csv')]
 
-                            # Initialize a dictionary to store the values for each data-stat
-                            player_data = {"playerID": playerID}
+                        # Initialize a dictionary to store the values for each data-stat
+                        player_data = {"id_player": playerID}
 
-                            # Find and store the values for the specified data-stat attributes
-                            for stat in ["mp", "fg", "fga", "fg_pct", "fg3", "fg3a", "fg3_pct", "ft", "fta", "ft_pct", "orb", "drb", "trb", "ast", "stl", "blk", "tov", "pf", "pts", "plus_minus"]:
-                                stat_value = player_row.find('td', {'data-stat': stat})
-                                stat_text = stat_value.text.strip() if stat_value else 'NULL'
-                                player_data[stat] = stat_text
+                        # Find and store the values for the specified data-stat attributes
+                        for stat in ["mp", "fg", "fga", "fg_pct", "fg3", "fg3a", "fg3_pct", "ft", "fta", "ft_pct", "orb", "drb", "trb", "ast", "stl", "blk", "tov", "pf", "pts", "plus_minus"]:
+                            stat_value = player_row.find('td', {'data-stat': stat})
+                            stat_text = stat_value.text.strip() if stat_value else 'NULL'
+                            player_data[stat] = stat_text
 
-                            # Generate the SQL INSERT statement
-                            # Corrected the line below to properly join the gameID
-                                columns = ', '.join(['id_game'] + list(player_data.keys()))
-                                values = ', '.join([f"'{gameID}'"] + [f"'{value}'::TIME" if key == 'mp' and value != 'NULL' else f"0{value}" if 'pct' in key and f"{value}".startswith('.') else f"{value.replace('+', '')}" if key == 'plus_minus' else f"{value}" if value == 'NULL' else f"{value}" for key, value in player_data.items()])
-                                sql_insert = f"INSERT INTO player_game ({columns}) VALUES ({values});\n"
+                        if player_data['fg'] == '0' and player_data['fga'] == '0':
+                            player_data['fg_pct'] = 'NULL'
+                        if player_data['fg3'] == '0' and player_data['fg3a'] == '0':
+                            player_data['fg3_pct'] = 'NULL'
+                        if player_data['ft'] == '0' and player_data['fta'] == '0':
+                            player_data['ft_pct'] = 'NULL'
 
-                            # Write the SQL INSERT statement to the file
-                            file.write(sql_insert)
-                else:
-                    print("No <tbody> element found under 'Basic Box Score Stats'.")
+
+                        # Generate the SQL INSERT statement
+                        # Corrected the line below to properly join the gameID
+                        columns = ', '.join(['id_game'] + list(player_data.keys()))
+                        values = ', '.join([f"'{gameID}'"] + [f"'{convert_time(value)}'" if key == 'mp' and value != 'NULL' else f"0{value}" if 'pct' in key and f"{value}".startswith('.') else f"{value.replace('+', '')}" if key == 'plus_minus' else f"{value}" if value == 'NULL' else f"{value}" for key, value in player_data.items()])
+                        sql_insert = f"INSERT INTO player_game ({columns}) VALUES ({values});\n"
+
+                        # Write the SQL INSERT statement to the file
+                        sqlInsertListPlayerGame.append(sql_insert)
+            else:
+                print("No <tbody> element found under 'Basic Box Score Stats'.")
         # Find the breadcrumbs div
         breadcrumbs_div = soup.find('div', class_='breadcrumbs')
 
@@ -107,15 +124,16 @@ def getGameInserts(url, gameID, type = 'regular season game'):
         else:
             print("Breadcrumbs div not found.")  
 
-        with open('../../sqlGenerated/InsertGame_' + gameID + '.sql', 'w') as file:
-            file.write(
-                f"INSERT INTO game "
-                f"(id_game, id_away_team, id_home_team, date, type) "
-                f"VALUES "
-                f"('{gameID}', {away_team_id}, {home_team_id}, TO_DATE('{game_date}', 'Month DD, YYYY'), '{type}');\n"
-            )
+        sql_insert = (
+            f"INSERT INTO game "
+            f"(id_game, id_home_team, id_away_team, game_date, game_type) "
+            f"VALUES "
+            f"('{gameID}', {home_team_id}, {away_team_id}, TO_DATE('{game_date}', 'Month DD, YYYY'), '{type}');\n"
+        )
+        sqlInsertListGame.append(sql_insert)
     else:
         print(f"Failed to retrieve the webpage. Status code: {response.status_code}")
+    return sqlInsertListGame, sqlInsertListPlayerGame
 
 
 def getPlayerInfo(url, contractYearID):
