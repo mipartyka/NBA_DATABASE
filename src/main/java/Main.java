@@ -4,7 +4,8 @@ import javax.swing.*;
 import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws NoSuchMethodException, UnsupportedLookAndFeelException, ClassNotFoundException, InstantiationException, IllegalAccessException, IOException {
+    public static void main(String[] args) throws IOException, UnsupportedLookAndFeelException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         MainController.getInstance();
     }
 }
