@@ -1,4 +1,5 @@
 import psycopg2
+import sys
 import nba as nba
 
 # Database connection parameters
@@ -22,7 +23,7 @@ cur = conn.cursor()
 
 cur.execute("SET search_path TO nba_project")
 
-url = 'https://www.basketball-reference.com/boxscores/202310240DEN.html'
+url = sys.argv[1]
 gameID = url.split('/')[-1].split('.')[0]
 
 insertGameList, insertPlayerGameList = nba.getGameInserts(url, gameID)
