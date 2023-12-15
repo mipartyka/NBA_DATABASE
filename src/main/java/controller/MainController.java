@@ -9,7 +9,7 @@ import lombok.Getter;
 public class MainController {
     private static MainController mainController;
 
-    private static PythonScrapers pythonScrapers = new PythonScrapers();
+    private static final PythonScrapers pythonScrapers = new PythonScrapers();
 
 
     private MainController() throws IOException {
@@ -29,6 +29,6 @@ public class MainController {
 
 
     private static void init() throws IOException {
-        pythonScrapers.runPythonScript("src/main/python/GenerateGameInserts.py", List.of("https://www.basketball-reference.com/boxscores/202310240GSW.html"));
+        MainFormController.getInstance();
     }
 }
