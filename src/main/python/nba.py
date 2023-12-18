@@ -368,7 +368,38 @@ def update_player_team(url, teamID):
             sqlInsertList.append(sql_insert)
     return sqlInsertList, missingPlayersList
 
+def getDayGameLinks(url):
+    # Send an HTTP request to the URL
+    response = requests.get(url)
+
+    # Parse the HTML content of the page using BeautifulSoup
+    soup = BeautifulSoup(response.text, 'html.parser')
+
+    # Initialize a list to store href values
+    hrefList = []
+
+    # If the caption is found, proceed to extract href from each line
+    game_summaries_div = soup.find('div', class_='game_summaries')
+     # Find all links (a) within the div with class 'right gamelink'
+    game_links = game_summaries_div.find_all('td', class_='right gamelink')
+    
+    # Iterate through each td and find the link
+    for gamelink_td in game_links:
+        game_link = gamelink_td.find('a', href=True)
+        
+        # Check if the link is found
+        if game_link:
+            # Print the href attribute of the link
+            hrefList.append(game_link['href'])
+        else:
+            print("Link not found inside the td.")
+    else:
+        print("Div not found.")
+
+    return hrefList
+
 # Example usage
 # getGameInserts('https://www.basketball-reference.com/boxscores/202312020CHO.html', '202312020CHO')
 # getPlayerInfo("https://www.basketball-reference.com/players/b/bullore01.html", 0)
 # update_player_team('https://www.basketball-reference.com/teams/BOS/2024.html', 2)
+# getDayGameLinks('https://www.basketball-reference.com/boxscores/?month=12&day=17&year=2023')

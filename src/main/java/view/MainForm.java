@@ -9,6 +9,7 @@ public class MainForm {
     private JPanel panel;
     private JTextField textFieldURL;
     private JButton buttonGenerate;
+    private JButton buttonGenerateFromDay;
 
     private JFrame frame;
 
