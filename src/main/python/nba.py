@@ -4,6 +4,7 @@ import requests
 from bs4 import BeautifulSoup, Comment
 
 import nbaTeams as teams
+import AddNewPlayer as addPlayer
 
 us_states = [
     'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut',
@@ -63,8 +64,8 @@ def getGameInserts(url, gameID, type='regular season game'):
         soup = BeautifulSoup(response.text, 'html.parser')
 
         # Find every 8th <th> element for "Basic Box Score Stats"
-        basic_stats_headers = soup.find_all('th', {'data-stat': 'header_tmp', 'colspan': '20',
-                                                   'class': 'over_header center'})[::7]
+        captions = soup.find_all('caption')
+        basic_stats_headers = [caption for caption in captions if 'Basic and Advanced Stats Table' in caption.get_text()]
 
         for basic_stats_header in basic_stats_headers:
             # Navigate to the corresponding <tbody> element for each header
@@ -77,7 +78,11 @@ def getGameInserts(url, gameID, type='regular season game'):
                 for player_row in player_rows:
                     # Check if player row contains data-append-csv attribute
                     if player_row.find('th', {'data-append-csv': True}):
-                        playerID = primaryKeys[player_row.find('th', {'data-append-csv': True}).get('data-append-csv')]
+                        playerIDBBR = player_row.find('th', {'data-append-csv': True}).get('data-append-csv')
+                        if playerIDBBR not in primaryKeys:
+                            print(playerIDBBR)
+                            addPlayer.addNewPlayerByURL(playerIDBBR, None)
+                        playerID = primaryKeys[playerIDBBR]
 
                         # Initialize a dictionary to store the values for each data-stat
                         player_data = {"id_player": playerID}
@@ -86,7 +91,7 @@ def getGameInserts(url, gameID, type='regular season game'):
                         for stat in ["mp", "fg", "fga", "fg_pct", "fg3", "fg3a", "fg3_pct", "ft", "fta", "ft_pct",
                                      "orb", "drb", "trb", "ast", "stl", "blk", "tov", "pf", "pts", "plus_minus"]:
                             stat_value = player_row.find('td', {'data-stat': stat})
-                            stat_text = stat_value.text.strip() if stat_value else 'NULL'
+                            stat_text = stat_value.text.strip() if stat_value and stat_value.text.strip() != '' else 'NULL'
                             player_data[stat] = stat_text
 
                         if player_data['fg'] == '0' and player_data['fga'] == '0':
@@ -143,7 +148,7 @@ def getGameInserts(url, gameID, type='regular season game'):
     return sqlInsertListGame, sqlInsertListPlayerGame
 
 
-def getPlayerInfo(url, contractYearID):
+def getPlayerInfo(url, contractYearID, preTeamID = None):
     response = requests.get(url)
 
     if response.status_code == 200:
@@ -271,6 +276,7 @@ def getPlayerInfo(url, contractYearID):
         name_parts = player_name.split()
 
         first_name = name_parts[0]
+        first_name = first_name.replace('\'', '')
         if len(name_parts) > 2 and (
                 name_parts[-1] == 'Jr.' or name_parts[-1] == 'Jr' or name_parts[-1] == 'Junior' or re.match(
             r'^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$', name_parts[-1])):
@@ -310,9 +316,8 @@ def getPlayerInfo(url, contractYearID):
             f"INSERT INTO player "
             f"(id_player, id_team, id_contract, id_player_stats, name, surname, date_of_birth, nationality, position, height) "
             f"VALUES "
-            f"({playerID}, {teamID}, {playerID}, {playerID}, '{first_name}', '{last_name}', '{date_of_birth}'::DATE, '{country}', '{position}', '{height}');\n"
+            f"({playerID}, {preTeamID if preTeamID else teamID}, {playerID}, {playerID}, '{first_name}', '{last_name}', '{date_of_birth}'::DATE, '{country}', '{position}', '{height}');\n"
         )
-        print(first_name, last_name)
         return playerInfo, contractInfo, contractYearList
     else:
         print(f"Failed to retrieve the webpage. Status code: {response.status_code}")
@@ -368,6 +373,7 @@ def update_player_team(url, teamID):
             sqlInsertList.append(sql_insert)
     return sqlInsertList, missingPlayersList
 
+
 def getDayGameLinks(url):
     # Send an HTTP request to the URL
     response = requests.get(url)
@@ -380,13 +386,13 @@ def getDayGameLinks(url):
 
     # If the caption is found, proceed to extract href from each line
     game_summaries_div = soup.find('div', class_='game_summaries')
-     # Find all links (a) within the div with class 'right gamelink'
+    # Find all links (a) within the div with class 'right gamelink'
     game_links = game_summaries_div.find_all('td', class_='right gamelink')
-    
+
     # Iterate through each td and find the link
     for gamelink_td in game_links:
         game_link = gamelink_td.find('a', href=True)
-        
+
         # Check if the link is found
         if game_link:
             # Print the href attribute of the link

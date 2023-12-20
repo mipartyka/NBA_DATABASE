@@ -3,13 +3,12 @@ package controller;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
-import model.PythonScrapers;
-import lombok.Getter;
+import model.PythonScriptRunner;
 
 public class MainController {
     private static MainController mainController;
 
-    private static final PythonScrapers pythonScrapers = new PythonScrapers();
+    private static final PythonScriptRunner pythonScriptRunner = new PythonScriptRunner();
 
 
     private MainController() throws IOException {
@@ -29,6 +28,7 @@ public class MainController {
 
 
     private static void init() throws IOException {
-        MainFormController.getInstance();
+        //MainFormController.getInstance();
+        pythonScriptRunner.runPythonScript("src/main/python/GenerateGameInsertsForDay.py", List.of(11,13,2023));
     }
 }

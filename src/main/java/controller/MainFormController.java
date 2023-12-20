@@ -1,19 +1,17 @@
 package controller;
 
-import model.PythonScrapers;
+import model.PythonScriptRunner;
 import view.MainForm;
 
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 public class MainFormController {
     private static MainForm mainForm;
     private static MainFormController mainFormController;
-    private static PythonScrapers pythonScrapers = new PythonScrapers();
+    private static PythonScriptRunner pythonScriptRunner = new PythonScriptRunner();
 
 
     public MainFormController() {
@@ -53,7 +51,7 @@ public class MainFormController {
 
     private void onButtongenerateFromDay() {
         try {
-            pythonScrapers.runPythonScript("src/main/python/GenerateGameInsertsFromDay.py", List.of(mainForm.getTextFieldURL().getText()));
+            pythonScriptRunner.runPythonScript("src/main/python/GenerateGameInsertsFromDay.py", List.of(mainForm.getTextFieldURL().getText()));
             mainForm.getTextFieldURL().setText("");
             mainForm.getButtonGenerateFromDay().setEnabled(false);
         } catch (Exception e) {
@@ -68,7 +66,7 @@ public class MainFormController {
 
     private void onButtonGenerate() {
         try {
-            pythonScrapers.runPythonScript("src/main/python/GenerateGameInserts.py", List.of(mainForm.getTextFieldURL().getText()));
+            pythonScriptRunner.runPythonScript("src/main/python/GenerateGameInserts.py", List.of(mainForm.getTextFieldURL().getText()));
             mainForm.getTextFieldURL().setText("");
             mainForm.getButtonGenerate().setEnabled(false);
         } catch (Exception e) {
