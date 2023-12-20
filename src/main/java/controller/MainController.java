@@ -3,13 +3,14 @@ package controller;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
+
+import model.UtilsDatabase;
 import model.PythonScriptRunner;
 
 public class MainController {
     private static MainController mainController;
-
     private static final PythonScriptRunner pythonScriptRunner = new PythonScriptRunner();
-
+    private static final UtilsDatabase utilsDatabase = new UtilsDatabase();
 
     private MainController() throws IOException {
         control();
@@ -29,6 +30,7 @@ public class MainController {
 
     private static void init() throws IOException {
         //MainFormController.getInstance();
-        pythonScriptRunner.runPythonScript("src/main/python/GenerateGameInsertsForDay.py", List.of(11,13,2023));
+        //pythonScriptRunner.runPythonScript("src/main/python/GenerateGameInsertsForDay.py", List.of(11,13,2023));
+        utilsDatabase.resetDatabase();
     }
 }
