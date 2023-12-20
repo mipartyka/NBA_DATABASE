@@ -77,34 +77,112 @@ EXECUTE FUNCTION update_player_stats_trigger();
 
 
 
--- Trigger to update team_game with sums when a new player_game record is inserted
-        CREATE OR REPLACE FUNCTION update_team_game_trigger()
-        RETURNS TRIGGER AS $$
-        BEGIN
-            UPDATE team_game tg
-            SET
-                pts = (SELECT SUM(pg.pts) FROM player_game pg JOIN player p ON pg.id_player = p.id_player WHERE pg.id_game = NEW.id_game AND p.id_team = tg.id_team),
-                trb = (SELECT SUM(pg.trb) FROM player_game pg JOIN player p ON pg.id_player = p.id_player WHERE pg.id_game = NEW.id_game AND p.id_team = tg.id_team),
-                ast = (SELECT SUM(pg.ast) FROM player_game pg JOIN player p ON pg.id_player = p.id_player WHERE pg.id_game = NEW.id_game AND p.id_team = tg.id_team),
-                stl = (SELECT SUM(pg.stl) FROM player_game pg JOIN player p ON pg.id_player = p.id_player WHERE pg.id_game = NEW.id_game AND p.id_team = tg.id_team),
-                fg = (SELECT SUM(pg.fg) FROM player_game pg JOIN player p ON pg.id_player = p.id_player WHERE pg.id_game = NEW.id_game AND p.id_team = tg.id_team),
-                fga = (SELECT SUM(pg.fga) FROM player_game pg JOIN player p ON pg.id_player = p.id_player WHERE pg.id_game = NEW.id_game AND p.id_team = tg.id_team),
-                fg_pct = (SELECT CASE WHEN COUNT(*) > 0 THEN SUM(pg.fg_pct) / COUNT(*) ELSE 0 END FROM player_game pg JOIN player p ON pg.id_player = p.id_player WHERE pg.id_game = NEW.id_game AND p.id_team = tg.id_team),
-                fg3 = (SELECT SUM(pg.fg3) FROM player_game pg JOIN player p ON pg.id_player = p.id_player WHERE pg.id_game = NEW.id_game AND p.id_team = tg.id_team),
-                fg3a = (SELECT SUM(pg.fg3a) FROM player_game pg JOIN player p ON pg.id_player = p.id_player WHERE pg.id_game = NEW.id_game AND p.id_team = tg.id_team),
-                fg3_pct = (SELECT CASE WHEN COUNT(*) > 0 THEN SUM(pg.fg3_pct) / COUNT(*) ELSE 0 END FROM player_game pg JOIN player p ON pg.id_player = p.id_player WHERE pg.id_game = NEW.id_game AND p.id_team = tg.id_team),
-                ft = (SELECT SUM(pg.ft) FROM player_game pg JOIN player p ON pg.id_player = p.id_player WHERE pg.id_game = NEW.id_game AND p.id_team = tg.id_team),
-                fta = (SELECT SUM(pg.fta) FROM player_game pg JOIN player p ON pg.id_player = p.id_player WHERE pg.id_game = NEW.id_game AND p.id_team = tg.id_team),
-                ft_pct = (SELECT CASE WHEN COUNT(*) > 0 THEN SUM(pg.ft_pct) / COUNT(*) ELSE 0 END FROM player_game pg JOIN player p ON pg.id_player = p.id_player WHERE pg.id_game = NEW.id_game AND p.id_team = tg.id_team),
-                orb = (SELECT SUM(pg.orb) FROM player_game pg JOIN player p ON pg.id_player = p.id_player WHERE pg.id_game = NEW.id_game AND p.id_team = tg.id_team),
-                drb = (SELECT SUM(pg.drb) FROM player_game pg JOIN player p ON pg.id_player = p.id_player WHERE pg.id_game = NEW.id_game AND p.id_team = tg.id_team),
-                tov = (SELECT SUM(pg.tov) FROM player_game pg JOIN player p ON pg.id_player = p.id_player WHERE pg.id_game = NEW.id_game AND p.id_team = tg.id_team),
-                blk = (SELECT SUM(pg.blk) FROM player_game pg JOIN player p ON pg.id_player = p.id_player WHERE pg.id_game = NEW.id_game AND p.id_team = tg.id_team)
-            WHERE tg.id_game = NEW.id_game AND tg.id_team = (SELECT id_team FROM player WHERE id_player = NEW.id_player);
+CREATE OR REPLACE FUNCTION update_team_game_trigger() RETURNS TRIGGER
+    LANGUAGE plpgsql
+AS
+$$
+BEGIN
+    -- Get the team id from the player table
+    DECLARE
+        team_id INTEGER;
+    BEGIN
+        SELECT id_team INTO team_id FROM player WHERE id_player = NEW.id_player;
 
+        -- Skip if team_id is null
+        IF team_id IS NULL THEN
             RETURN NEW;
-        END;
-        $$ LANGUAGE plpgsql;
+        END IF;
+
+        -- Check if a record for the same game and team already exists
+        IF EXISTS (
+            SELECT 1 
+            FROM team_game 
+            WHERE id_game = NEW.id_game AND id_team = team_id
+        ) THEN
+            -- Update existing record
+            UPDATE team_game
+            SET
+                pts = subquery.pts,
+                trb = subquery.trb,
+                ast = subquery.ast,
+                stl = subquery.stl,
+                fg = subquery.fg,
+                fga = subquery.fga,
+                fg_pct = subquery.fg_pct,
+                fg3 = subquery.fg3,
+                fg3a = subquery.fg3a,
+                fg3_pct = subquery.fg3_pct,
+                ft = subquery.ft,
+                fta = subquery.fta,
+                ft_pct = subquery.ft_pct,
+                orb = subquery.orb,
+                drb = subquery.drb,
+                tov = subquery.tov,
+                blk = subquery.blk
+            FROM (
+                SELECT
+                    SUM(pg.pts) AS pts,
+                    SUM(pg.trb) AS trb,
+                    SUM(pg.ast) AS ast,
+                    SUM(pg.stl) AS stl,
+                    SUM(pg.fg) AS fg,
+                    SUM(pg.fga) AS fga,
+                    CASE WHEN COUNT(*) > 0 THEN SUM(pg.fg_pct) / COUNT(*) ELSE 0 END AS fg_pct,
+                    SUM(pg.fg3) AS fg3,
+                    SUM(pg.fg3a) AS fg3a,
+                    CASE WHEN COUNT(*) > 0 THEN SUM(pg.fg3_pct) / COUNT(*) ELSE 0 END AS fg3_pct,
+                    SUM(pg.ft) AS ft,
+                    SUM(pg.fta) AS fta,
+                    CASE WHEN COUNT(*) > 0 THEN SUM(pg.ft_pct) / COUNT(*) ELSE 0 END AS ft_pct,
+                    SUM(pg.orb) AS orb,
+                    SUM(pg.drb) AS drb,
+                    SUM(pg.tov) AS tov,
+                    SUM(pg.blk) AS blk
+                FROM
+                    player_game pg
+                WHERE
+                        pg.id_game = NEW.id_game AND
+                        pg.id_player = NEW.id_player
+            ) AS subquery
+            WHERE
+                id_game = NEW.id_game AND
+                id_team = team_id;
+        ELSE
+            -- Insert new record
+            INSERT INTO team_game (id_game, id_team, pts, trb, ast, stl, fg, fga, fg_pct, fg3, fg3a, fg3_pct, ft, fta, ft_pct, orb, drb, tov, blk)
+            SELECT
+                NEW.id_game,
+                team_id,
+                SUM(pg.pts),
+                SUM(pg.trb),
+                SUM(pg.ast),
+                SUM(pg.stl),
+                SUM(pg.fg),
+                SUM(pg.fga),
+                CASE WHEN COUNT(*) > 0 THEN SUM(pg.fg_pct) / COUNT(*) ELSE 0 END,
+                SUM(pg.fg3),
+                SUM(pg.fg3a),
+                CASE WHEN COUNT(*) > 0 THEN SUM(pg.fg3_pct) / COUNT(*) ELSE 0 END,
+                SUM(pg.ft),
+                SUM(pg.fta),
+                CASE WHEN COUNT(*) > 0 THEN SUM(pg.ft_pct) / COUNT(*) ELSE 0 END,
+                SUM(pg.orb),
+                SUM(pg.drb),
+                SUM(pg.tov),
+                SUM(pg.blk)
+            FROM
+                player_game pg
+            WHERE
+                    pg.id_game = NEW.id_game AND
+                    pg.id_player = NEW.id_player;
+        END IF;
+
+        RETURN NULL; -- No need to return anything for an AFTER UPDATE trigger
+    END;
+END;
+$$;
+
+
 
 
 -- Trigger to activate the update_team_game_trigger function on insert into player_game

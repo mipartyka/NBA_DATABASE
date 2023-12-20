@@ -44,7 +44,9 @@ for url in hrefList:
 
     for query in insertGameList:
         cur.execute(query)
+
     for query in insertPlayerGameList:
+        print(query)
         cur.execute(query)
 
 # Commit the transaction
