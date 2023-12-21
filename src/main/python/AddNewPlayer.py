@@ -22,7 +22,7 @@ def addNewPlayerByURL(playerIDBBR, teamID=None):
 
     lastID = len(nba.primaryKeys)
 
-    with open('../../IDMap.txt', 'a') as file:
+    with open('IDMap.txt', 'a') as file:
         file.write(f'\n{playerIDBBR}: ' + '{' + str(lastID) + '}')
         file.close()
 
@@ -47,7 +47,7 @@ def addNewPlayerByURL(playerIDBBR, teamID=None):
 
     player, contract, contractYearList = nba.getPlayerInfo(url, next_contract_year_id)
 
-    cur.execute(f"insert into player_stats (id_player_stats) select generate_series ({lastID}, {lastID} + 1);")
+    cur.execute(f"insert into player_stats (id_player_stats) select generate_series ({lastID}, {lastID});")
 
     cur.execute(contract)
 
