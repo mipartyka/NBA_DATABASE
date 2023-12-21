@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,7 +31,14 @@ public class MainController {
 
     private static void init() throws IOException {
         //MainFormController.getInstance();
-        //pythonScriptRunner.runPythonScript("src/main/python/GenerateGameInsertsForDay.py", List.of(11,13,2023));
-        utilsDatabase.resetDatabase();
+        pythonScriptRunner.runPythonScript("src/main/python/GenerateGameInsertsForDay.py", List.of(10,31,2023));
+//        try {
+//            utilsDatabase.connectToDatabase();
+//            utilsDatabase.resetDatabase();
+//        } catch (ClassNotFoundException | SQLException e) {
+//            e.printStackTrace();
+//        } finally {
+//            utilsDatabase.disconnectFromDatabase();
+//        }
     }
 }

@@ -84,7 +84,6 @@ public class UtilsDatabase {
 
     public void resetDatabase() {
         try{
-            connectToDatabase();
             setSearchPath("nba_project");
             deleteAllDataFromTable("player_game");
             deleteAllDataFromTable("team_game");
@@ -93,10 +92,6 @@ public class UtilsDatabase {
             setNULLToAllRecordsFromTable("player_stats", List.of("id_player_stats"));
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        } finally {
-            disconnectFromDatabase();
         }
     }
 }
