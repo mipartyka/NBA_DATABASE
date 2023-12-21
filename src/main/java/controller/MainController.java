@@ -31,7 +31,9 @@ public class MainController {
 
     private static void init() throws IOException {
         //MainFormController.getInstance();
-        pythonScriptRunner.runPythonScript("src/main/python/GenerateGameInsertsForDay.py", List.of(10,31,2023));
+        for (int i = 24; i <= 31; i++) {
+            pythonScriptRunner.runPythonScript("src/main/python/GenerateGameInsertsForDay.py", List.of(10,i,2023));
+        }
 //        try {
 //            utilsDatabase.connectToDatabase();
 //            utilsDatabase.resetDatabase();
