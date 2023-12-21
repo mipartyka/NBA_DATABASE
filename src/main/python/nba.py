@@ -65,9 +65,11 @@ def getGameInserts(url, gameID, type='regular season game'):
 
         # Find every 8th <th> element for "Basic Box Score Stats"
         captions = soup.find_all('caption')
+
         basic_stats_headers = [caption for caption in captions if 'Basic and Advanced Stats Table' in caption.get_text()]
 
         for basic_stats_header in basic_stats_headers:
+            id_team = teams.nba_teams[basic_stats_header.get_text().replace(' Basic and Advanced Stats Table', '').strip()]
             # Navigate to the corresponding <tbody> element for each header
             tbody = basic_stats_header.find_next('tbody')
 
@@ -103,8 +105,8 @@ def getGameInserts(url, gameID, type='regular season game'):
 
                         # Generate the SQL INSERT statement
                         # Corrected the line below to properly join the gameID
-                        columns = ', '.join(['id_game'] + list(player_data.keys()))
-                        values = ', '.join([f"'{gameID}'"] + [
+                        columns = ', '.join(['id_game', 'id_team'] + list(player_data.keys()))
+                        values = ', '.join([f"'{gameID}'", f"'{id_team}'"] + [
                             f"'{convert_time(value)}'" if key == 'mp' and value != 'NULL' else f"0{value}" if 'pct' in key and f"{value}".startswith(
                                 '.') else f"{value.replace('+', '')}" if key == 'plus_minus' else f"{value}" if value == 'NULL' else f"{value}"
                             for key, value in player_data.items()])
