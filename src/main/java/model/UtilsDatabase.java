@@ -1,5 +1,7 @@
 package model;
 
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.sql.*;
 import java.util.List;
 
@@ -29,6 +31,26 @@ public class UtilsDatabase {
             e.printStackTrace();
         }
     }
+
+    public static ResultSet runSqlFunction(String functionName, List<Object> args) throws SQLException {
+        StringBuilder query = new StringBuilder("SELECT * FROM " + functionName + "(");
+        for (int i = 0; i < args.size(); i++) {
+            query.append("?");
+            if (i != args.size() - 1) {
+                query.append(", ");
+            }
+        }
+        query.append(")");
+
+        PreparedStatement preparedStatement = connection.prepareStatement(query.toString());
+        for (int i = 0; i < args.size(); i++) {
+            preparedStatement.setObject(i + 1, args.get(i));
+        }
+
+        return preparedStatement.executeQuery();
+
+    }
+
 
     private static void setSearchPath(String searchPath) throws SQLException {
         try (Statement statement = connection.createStatement()) {
@@ -62,7 +84,7 @@ public class UtilsDatabase {
             // Iterate through columns and append column names
             while (resultSet.next()) {
                 String columnName = resultSet.getString("COLUMN_NAME");
-                if(!primaryKeyList.contains(columnName))
+                if (!primaryKeyList.contains(columnName))
                     updateQuery.append(columnName).append(" = NULL, ");
             }
 
@@ -83,7 +105,7 @@ public class UtilsDatabase {
     }
 
     public void resetDatabase() {
-        try{
+        try {
             setSearchPath("nba_project");
             deleteAllDataFromTable("player_game");
             deleteAllDataFromTable("team_game");
@@ -92,6 +114,44 @@ public class UtilsDatabase {
             setNULLToAllRecordsFromTable("player_stats", List.of("id_player_stats"));
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+
+    public static void fillTableFromResultSet(JTable table, ResultSet resultSet) {
+        try {
+            // Get column names
+            int columnCount = resultSet.getMetaData().getColumnCount();
+            String[] columnNames = new String[columnCount];
+            for (int i = 1; i <= columnCount; i++) {
+                columnNames[i - 1] = resultSet.getMetaData().getColumnName(i);
+            }
+
+            // Create a DefaultTableModel with column names
+            DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
+
+            // Populate the table model with data
+            while (resultSet.next()) {
+                Object[] rowData = new Object[columnCount];
+                for (int i = 1; i <= columnCount; i++) {
+                    rowData[i - 1] = resultSet.getObject(i);
+                }
+                tableModel.addRow(rowData);
+            }
+
+            // Set the table model for the JTable
+            table.setModel(tableModel);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Close the ResultSet if necessary
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
