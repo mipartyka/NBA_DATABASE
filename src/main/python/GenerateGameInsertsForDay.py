@@ -1,3 +1,5 @@
+import time
+
 import psycopg2
 import sys
 import nba as nba
@@ -25,15 +27,14 @@ cur.execute("SET search_path TO nba_project")
 
 dayURL = 'https://www.basketball-reference.com/boxscores/?month=' + sys.argv[1] + '&day=' + sys.argv[2] + '&year=' + sys.argv[3]
 
-hrefList = []
 
 hrefList = nba.getDayGameLinks(dayURL)
 
-print(sys.argv[1])
-
-print(hrefList)
 
 for url in hrefList:
+    print('Adding game: ' + url + '\n')
+    print('Thats game number: ' + str(hrefList.index(url) + 1) + '/' + str(len(hrefList)) + ' for day ' + sys.argv[1] + '/' + sys.argv[2] + '/' + sys.argv[3] + '\n')
+
     url = 'https://www.basketball-reference.com' + url
     # print(url)
     gameID = url.split('/')[-1].split('.')[0]
@@ -46,8 +47,9 @@ for url in hrefList:
         cur.execute(query)
 
     for query in insertPlayerGameList:
-        print(query)
         cur.execute(query)
+
+    time.sleep(2)
 
 # Commit the transaction
 conn.commit()

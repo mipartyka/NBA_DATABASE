@@ -10,6 +10,9 @@ public class MainForm {
     private JTextField textFieldURL;
     private JButton buttonGenerate;
     private JButton buttonGenerateFromDay;
+    private JComboBox comboBoxDay;
+    private JComboBox comboBoxYear;
+    private JComboBox comboBoxMonth;
 
     private JFrame frame;
 
