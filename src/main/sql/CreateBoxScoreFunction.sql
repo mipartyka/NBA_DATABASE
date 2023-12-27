@@ -1,3 +1,5 @@
+set search_path to 'nba_project';
+
 DROP FUNCTION IF EXISTS getBoxScore(character varying);
 
 CREATE OR REPLACE FUNCTION getBoxScore(p_id_game VARCHAR(255))

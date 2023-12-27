@@ -1,3 +1,5 @@
+set search_path to 'nba_project';
+
 -- Trigger to update team_stats when a new team_game record is inserted
 CREATE OR REPLACE FUNCTION update_team_stats_trigger()
 RETURNS TRIGGER AS $$

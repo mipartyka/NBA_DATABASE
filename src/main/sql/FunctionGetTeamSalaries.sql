@@ -53,52 +53,74 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION CalculateLuxuryTax(p_team_id INT)
+CREATE OR REPLACE FUNCTION CalculateLuxuryTax(p_team_id INT, p_alternate_rates BOOLEAN)
     RETURNS DECIMAL(15, 2) AS $$
 DECLARE
     cap_space_limit DECIMAL(15, 2) := 165294000;  -- NBA cap space limit in dollars
-    tax_rate_1 DECIMAL(4, 2) := 2.50;  -- Tax rate for $0-5 million above tax line
-    tax_rate_2 DECIMAL(4, 2) := 2.75;  -- Tax rate for $5-10 million above tax line
-    tax_rate_3 DECIMAL(4, 2) := 3.50;  -- Tax rate for $10-15 million above tax line
-    tax_rate_4 DECIMAL(4, 2) := 4.25;  -- Tax rate for $15-20 million above tax line
+    tax_rate_1 DECIMAL(4, 2);
+    tax_rate_2 DECIMAL(4, 2);
+    tax_rate_3 DECIMAL(4, 2);
+    tax_rate_4 DECIMAL(4, 2);
     additional_rate DECIMAL(4, 2) := 0.50;  -- Additional rate for every $5 million above $20 million
     team_salary DECIMAL(15, 2);
     luxury_tax DECIMAL(15, 2);
+    rest INT;
 BEGIN
-    -- Get the total salary for the team
-    SELECT total_salary from getTeamSalaries(p_team_id)
-    INTO team_salary;
+    -- Set tax rates based on the alternate_rates argument
+    IF p_alternate_rates THEN
+        tax_rate_1 := 2.50;
+        tax_rate_2 := 2.75;
+        tax_rate_3 := 3.50;
+        tax_rate_4 := 4.25;
+    ELSE
+        tax_rate_1 := 1.50;
+        tax_rate_2 := 1.75;
+        tax_rate_3 := 2.50;
+        tax_rate_4 := 3.25;
+    END IF;
 
+    -- Get the total salary for the team
+    SELECT total_salary FROM getTeamSalaries(p_team_id)
+    INTO team_salary;
 
     -- Calculate luxury tax
     IF team_salary > cap_space_limit THEN
-        -- Calculate tax for the first $5 million above the cap
+        -- Calculate tax for each bracket
         IF team_salary <= cap_space_limit + 5000000 THEN
-            luxury_tax := (team_salary - cap_space_limit) * (tax_rate_1 / 100);
+            luxury_tax := (team_salary - cap_space_limit) * tax_rate_1;
         ELSE
-            luxury_tax := 5000000 * (tax_rate_1 / 100);
+            luxury_tax := 5000000 * tax_rate_1;
 
-            -- Calculate tax for the next $5 million above the cap
             IF team_salary <= cap_space_limit + 10000000 THEN
-                luxury_tax := luxury_tax + (team_salary - (cap_space_limit + 5000000)) * (tax_rate_2 );
+                luxury_tax := luxury_tax + (team_salary - (cap_space_limit + 5000000)) * tax_rate_2;
             ELSE
-                luxury_tax := luxury_tax + 5000000 * (tax_rate_2 / 100);
+                luxury_tax := luxury_tax + 5000000 * tax_rate_2;
 
-                -- Calculate tax for the next $5 million above the cap
                 IF team_salary <= cap_space_limit + 15000000 THEN
-                    luxury_tax := luxury_tax + (team_salary - (cap_space_limit + 10000000)) * (tax_rate_3 );
+                    luxury_tax := luxury_tax + (team_salary - (cap_space_limit + 10000000)) * tax_rate_3;
                 ELSE
-                    luxury_tax := luxury_tax + 5000000 * (tax_rate_3 / 100);
+                    luxury_tax := luxury_tax + 5000000 * tax_rate_3;
 
-                    -- Calculate tax for the next $5 million above the cap
                     IF team_salary <= cap_space_limit + 20000000 THEN
-                        luxury_tax := luxury_tax + (team_salary - (cap_space_limit + 15000000)) * (tax_rate_4 );
+                        luxury_tax := luxury_tax + (team_salary - (cap_space_limit + 15000000)) * tax_rate_4;
                     ELSE
-                        luxury_tax := luxury_tax + 5000000 * (tax_rate_4 / 100);
-
-                        -- Calculate tax for every additional $5 million above the cap
-                        luxury_tax := luxury_tax + CEIL((team_salary - (cap_space_limit + 20000000)) / 5000000) *
-                                                   additional_rate * (team_salary - (cap_space_limit + 20000000)) ;
+                        luxury_tax := luxury_tax + 5000000 * tax_rate_4;
+                        -- Calculate tax for the next $5 million above the cap
+                        IF team_salary <= cap_space_limit + 20000000 THEN
+                            luxury_tax := luxury_tax + (team_salary - (cap_space_limit + 15000000)) * (tax_rate_4);
+                        ELSE
+                            luxury_tax := luxury_tax + 5000000 * (tax_rate_4);
+                            -- Calculate tax for every additional $5 million above the cap
+                            additional_rate := tax_rate_4;
+                            IF team_salary > cap_space_limit + 20000000 THEN
+                                FOR i IN 1..((team_salary - (cap_space_limit + 20000000)) / 5000000) LOOP
+                                    luxury_tax := luxury_tax + additional_rate * 5000000;
+                                    additional_rate := additional_rate + 0.5; -- Increase additional rate by 0.5 for each $5 million increment
+                                END LOOP;
+                                rest := ((team_salary - (cap_space_limit + 20000000)) / 5000000);
+                                luxury_tax := luxury_tax + (team_salary - (cap_space_limit + 20000000 + 5000000 * rest)) * additional_rate;
+                            END IF;
+                        END IF;
                     END IF;
                 END IF;
             END IF;
