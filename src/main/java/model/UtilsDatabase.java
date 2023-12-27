@@ -52,7 +52,7 @@ public class UtilsDatabase {
     }
 
 
-    private static void setSearchPath(String searchPath) throws SQLException {
+    public static void setSearchPath(String searchPath) throws SQLException {
         try (Statement statement = connection.createStatement()) {
             // Execute the SET search_path query
             statement.execute("SET search_path TO " + searchPath);

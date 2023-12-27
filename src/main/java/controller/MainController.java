@@ -30,17 +30,21 @@ public class MainController {
 
 
     private static void init() throws IOException {
-        //MainFormController.getInstance();
-        for (int i = 24; i <= 31; i++) {
-            pythonScriptRunner.runPythonScript("src/main/python/GenerateGameInsertsForDay.py", List.of(10,i,2023));
-        }
-//        try {
-//            utilsDatabase.connectToDatabase();
-//            utilsDatabase.resetDatabase();
-//        } catch (ClassNotFoundException | SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            utilsDatabase.disconnectFromDatabase();
+//        MainFormController.getInstance();
+//        StandingsFormController.getInstance();
+//        for (int i = 24; i <= 31; i++) {
+//            pythonScriptRunner.runPythonScript("src/main/python/GenerateGameInsertsForDay.py", List.of(10,i,2023));
 //        }
+        try {
+            utilsDatabase.connectToDatabase();
+            UtilsDatabase.setSearchPath("nba_project");
+
+            UtilsDatabase.runSqlFunction("get_league_standings", List.of("league"));
+//            StandingsFormController.getInstance();
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        } finally {
+            utilsDatabase.disconnectFromDatabase();
+        }
     }
 }

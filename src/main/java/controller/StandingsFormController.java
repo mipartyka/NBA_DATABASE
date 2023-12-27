@@ -36,7 +36,7 @@ public class StandingsFormController {
 
     private static void initiallyFillTable() {
         try {
-            UtilsDatabase.fillTableFromResultSet(standingsForm.getTableStandings(), UtilsDatabase.runSqlFunction("get_standings", List.of()));
+            UtilsDatabase.fillTableFromResultSet(standingsForm.getTableStandings(), UtilsDatabase.runSqlFunction("get_league_standings", List.of("league")));
         } catch (SQLException e) {
             e.printStackTrace();
         }
