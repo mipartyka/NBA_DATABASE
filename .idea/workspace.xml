@@ -5,20 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c95aad3-e260-4f3f-bc65-2ac26d9d7971" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/AGH_SQL.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_projectlombok_lombok_1_18_26.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a2f76c5b-0d7a-4e90-b3b0-5e748e157866.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a2f76c5b-0d7a-4e90-b3b0-5e748e157866.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a2f76c5b-0d7a-4e90-b3b0-5e748e157866/storage_v2/_src_/database/cetphhnl.HAY31w/schema/nba_project.Bx5wJg.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a2f76c5b-0d7a-4e90-b3b0-5e748e157866/storage_v2/_src_/database/cetphhnl.HAY31w/schema/nba_project.Bx5wJg.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a2f76c5b-0d7a-4e90-b3b0-5e748e157866/storage_v2/_src_/database/cetphhnl.HAY31w/schema/nba_project.Bx5wJg.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a2f76c5b-0d7a-4e90-b3b0-5e748e157866/storage_v2/_src_/database/cetphhnl.HAY31w/schema/nba_project.Bx5wJg.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a2f76c5b-0d7a-4e90-b3b0-5e748e157866/storage_v2/_src_/database/cetphhnl.HAY31w/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a2f76c5b-0d7a-4e90-b3b0-5e748e157866/storage_v2/_src_/database/cetphhnl.HAY31w/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/StandingsFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/StandingsFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/UtilsDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/UtilsDatabase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/StandingsForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/StandingsForm.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/MainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/model/UtilsDatabase.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/UtilsDatabase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/StandingsForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/StandingsForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/sql/CreateStandingsFunction.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/sql/CreateStandingsFunction.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controller/StandingsFormController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/StandingsFormController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/StandingsForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/view/StandingsForm.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,26 +40,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH&quot;: &quot;362&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/sonax/IdeaProjects/NBA_DATABASE&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "362",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "41-add-options-to-standingsform",
+    "last_opened_file_path": "C:/Users/sonax/IdeaProjects/NBA_DATABASE",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="NBA_DATABASE" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Main" />
@@ -175,10 +174,30 @@
       <workItem from="1703689395244" duration="107000" />
       <workItem from="1703689513425" duration="5572000" />
       <workItem from="1703702977221" duration="27000" />
+      <workItem from="1703703066680" duration="3709000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/controller/StandingsFormController.java</url>
+          <line>40</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

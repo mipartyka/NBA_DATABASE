@@ -38,9 +38,9 @@ BEGIN
             ) tg ON t.id_team = tg.id_team
         WHERE
             (conference_filter = 'league') OR
-            (conference_filter = 'Eastern' AND t.conference = 'Eastern') OR
-            (conference_filter = 'Western' AND t.conference = 'Western') OR
-            (conference_filter = t.division)
+            (conference_filter = 'eastern' AND t.conference = 'Eastern') OR
+            (conference_filter = 'western' AND t.conference = 'Western') OR
+            (conference_filter = lower(t.division))
         GROUP BY
             t.id_team, t.name
         ORDER BY
