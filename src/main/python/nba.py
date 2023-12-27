@@ -82,7 +82,7 @@ def getGameInserts(url, gameID, type='regular season game'):
                     if player_row.find('th', {'data-append-csv': True}):
                         playerIDBBR = player_row.find('th', {'data-append-csv': True}).get('data-append-csv')
                         if playerIDBBR not in primaryKeys:
-                            print('Player with id: ' + playerIDBBR + ' not found, adding to database')
+                            print(playerIDBBR)
                             addPlayer.addNewPlayerByURL(playerIDBBR, None)
                         playerID = primaryKeys[playerIDBBR]
 

@@ -25,8 +25,8 @@ CREATE TABLE player (
     surname VARCHAR(255),
     date_of_birth DATE,
     nationality VARCHAR(255),
-    position VARCHAR(255),
-    height VARCHAR(255)
+    position VARCHAR(255)
+    height VARCHAR(255),
 );
 
 -- Create player_stats table
@@ -72,7 +72,7 @@ CREATE TABLE team_stats (
     ft_pct DOUBLE precision,
     orb INT,
     drb INT,
-    turnovers INT
+    turnovers INT,
 );
 
 -- Create player_contract table
