@@ -8,6 +8,8 @@ import javax.swing.*;
 public class StandingsForm {
     private JPanel panel;
     private JTable tableStandings;
+    private JComboBox comboBoxStandings;
+    private JComboBox comboBoxDetailed;
     private JFrame frame;
 
     public StandingsForm() {
