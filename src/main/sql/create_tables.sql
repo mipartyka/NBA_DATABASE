@@ -79,7 +79,7 @@ CREATE TABLE team_stats (
 CREATE TABLE player_contract (
     id_contract INT PRIMARY KEY,
     money DECIMAL(15, 2), -- Adjust precision and scale as needed
-    length INT,
+    length INT
 );
 
 -- Create contract_year table

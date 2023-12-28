@@ -1,6 +1,8 @@
 package controller;
 
-import model.UtilsDatabase;
+import model.Game;
+import model.utils.Utils;
+import model.utils.UtilsDatabase;
 import view.GamesForm;
 
 import java.sql.SQLException;
@@ -37,6 +39,8 @@ public class GamesFormController {
                 throw new RuntimeException(ex);
             }
         });
+        gamesForm.getListGames().addListSelectionListener(e -> onGameSelected());
+        gamesForm.getButtonBack().addActionListener(e -> onButtonBack());
     }
 
     private static void init() {
@@ -44,18 +48,42 @@ public class GamesFormController {
         fillYearComboBox();
         fillMonthComboBox();
         fillDayComboBox();
+        setToday();
+    }
+
+    private static void setToday() {
+        gamesForm.getComboBoxYear().setSelectedItem(LocalDate.now().getYear());
+        gamesForm.getComboBoxMonth().setSelectedItem(LocalDate.now().getMonth());
+        gamesForm.getComboBoxDay().setSelectedItem(LocalDate.now().getDayOfMonth());
+    }
+
+    private void onButtonBack() {
+        MainFormController.getInstance();
+        gamesForm.getFrame().dispose();
+    }
+
+    private void onGameSelected() {
+        Utils.PARAMS.put("CURRENT_GAME", gamesForm.getListGames().getSelectedValue());
+        gamesForm.getFrame().dispose();
+        BoxScoreFormController.getInstance();
     }
 
     private void onComboBoxMonth() {
         gamesForm.getButtonSearch().setEnabled(!Objects.isNull(gamesForm.getComboBoxMonth().getSelectedItem()) && !Objects.isNull(gamesForm.getComboBoxYear().getSelectedItem()) && !Objects.isNull(gamesForm.getComboBoxDay().getSelectedItem()));
+        int currentDay = (int) gamesForm.getComboBoxDay().getSelectedItem();
         gamesForm.getComboBoxDay().removeAllItems();
         int daysInMonth = LocalDate.of((int) gamesForm.getComboBoxYear().getSelectedItem(), (Month) gamesForm.getComboBoxMonth().getSelectedItem(), 1).lengthOfMonth();
         for (int day = 1; day <= daysInMonth; day++) {
             gamesForm.getComboBoxDay().addItem(day);
         }
+        if (currentDay <= daysInMonth) {
+            gamesForm.getComboBoxDay().setSelectedItem(currentDay);
+        } else {
+            gamesForm.getComboBoxDay().setSelectedItem(daysInMonth);
+        }
     }
     private void onButtonSearch() throws SQLException {
-        UtilsDatabase.populateJListFromResultSet(gamesForm.getListGames(), UtilsDatabase.runSqlFunction("get_games_by_date", List.of(gamesForm.getComboBoxYear().getSelectedItem() + "-"  + gamesForm.getComboBoxMonth().getSelectedItem() + "-" + gamesForm.getComboBoxDay().getSelectedItem())));
+        UtilsDatabase.populateJListFromList(gamesForm.getListGames(), Game.resultSetToGameList( UtilsDatabase.runSqlFunction("get_games_by_date", List.of(gamesForm.getComboBoxYear().getSelectedItem() + "-"  + gamesForm.getComboBoxMonth().getSelectedItem() + "-" + gamesForm.getComboBoxDay().getSelectedItem()))));
     }
 
     private void onComboBoxDay() {

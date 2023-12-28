@@ -10,12 +10,21 @@
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/a2f76c5b-0d7a-4e90-b3b0-5e748e157866/storage_v2/_src_/database/cetphhnl.HAY31w/schema/nba_project.Bx5wJg.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a2f76c5b-0d7a-4e90-b3b0-5e748e157866/storage_v2/_src_/database/cetphhnl.HAY31w/schema/nba_project.Bx5wJg.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/a2f76c5b-0d7a-4e90-b3b0-5e748e157866/storage_v2/_src_/database/cetphhnl.HAY31w/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a2f76c5b-0d7a-4e90-b3b0-5e748e157866/storage_v2/_src_/database/cetphhnl.HAY31w/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/GamesFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/GamesFormController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/MainFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MainFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/UtilsDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/UtilsDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/StandingsFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/StandingsFormController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/utils/UtilsDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/utils/UtilsDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/GamesForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/GamesForm.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/GamesForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/GamesForm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/MainForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainForm.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/MainForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainForm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/StandingsForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/StandingsForm.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/StandingsForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/StandingsForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/sql/CreateBoxScoreFunction.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/sql/CreateBoxScoreFunction.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/sql/FunctionGetGamesForDay.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/sql/FunctionGetGamesForDay.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/sql/create_tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/sql/create_tables.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/utils/UtilsDatabase.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/utils/UtilsDatabase.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,27 +55,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH&quot;: &quot;362&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;43-add-getting-games-from-data&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/sonax/IdeaProjects/NBA_DATABASE&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "UI_DESIGNER_EDITOR_MODE.PaletteManager.STATE": "ToolWindow",
+    "UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH": "116",
+    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW": "true",
+    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.STATE": "left",
+    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "208",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "45-implement-a-game-class",
+    "last_opened_file_path": "C:/Users/sonax/IdeaProjects/NBA_DATABASE",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "database.query.execution",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="NBA_DATABASE" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Main" />
@@ -181,7 +195,9 @@
       <workItem from="1703689513425" duration="5572000" />
       <workItem from="1703702977221" duration="27000" />
       <workItem from="1703703066680" duration="5545000" />
-      <workItem from="1703725040382" duration="3964000" />
+      <workItem from="1703725040382" duration="9061000" />
+      <workItem from="1703769334689" duration="5761000" />
+      <workItem from="1703776155601" duration="6316000" />
     </task>
     <servers />
   </component>

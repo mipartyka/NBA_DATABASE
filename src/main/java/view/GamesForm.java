@@ -12,6 +12,7 @@ public class GamesForm {
     private JComboBox comboBoxYear;
     private JComboBox comboBoxMonth;
     private JButton buttonSearch;
+    private JButton buttonBack;
     private JFrame frame;
 
     public GamesForm() {

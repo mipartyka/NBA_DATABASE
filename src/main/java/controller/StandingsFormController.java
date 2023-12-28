@@ -1,7 +1,6 @@
 package controller;
 
-import model.UtilsDatabase;
-import org.postgresql.core.Utils;
+import model.utils.UtilsDatabase;
 import view.StandingsForm;
 
 import java.sql.SQLException;
@@ -29,6 +28,7 @@ public class StandingsFormController {
     public void control() {
         standingsForm.getComboBoxStandings().addActionListener(e -> onComboBoxStandings());
         standingsForm.getComboBoxDetailed().addActionListener(e -> onComboBoxDetailed());
+        standingsForm.getButtonBack().addActionListener(e -> onButtonBack());
     }
 
     private void onComboBoxDetailed() {
@@ -106,6 +106,11 @@ public class StandingsFormController {
             standingsForm.getComboBoxDetailed().addItem("Pacific");
             standingsForm.getComboBoxDetailed().addItem("Southwest");
         }
+    }
+
+    private void onButtonBack() {
+        MainFormController.getInstance();
+        standingsForm.getFrame().dispose();
     }
 
     private static void init() {
