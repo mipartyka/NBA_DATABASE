@@ -38,9 +38,8 @@ public class MainController {
         try {
             utilsDatabase.connectToDatabase();
             UtilsDatabase.setSearchPath("nba_project");
-
-//            UtilsDatabase.runSqlFunction("get_league_standings", List.of("league"));
-            StandingsFormController.getInstance();
+//            StandingsFormController.getInstance();
+            MainFormController.getInstance();
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }

@@ -154,4 +154,31 @@ public class UtilsDatabase {
             }
         }
     }
+    public static void populateJListFromResultSet(JList<String> jList, ResultSet resultSet) {
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+
+        try {
+            // Populate the list model with data
+            while (resultSet.next()) {
+                // Assuming the result set has a single column of type String
+                String data = resultSet.getString(1);
+                listModel.addElement(data);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Close the ResultSet if necessary
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // Set the list model for the given JList
+        jList.setModel(listModel);
+    }
+
 }
