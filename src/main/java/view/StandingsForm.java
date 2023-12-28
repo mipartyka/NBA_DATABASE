@@ -10,6 +10,7 @@ public class StandingsForm {
     private JTable tableStandings;
     private JComboBox comboBoxStandings;
     private JComboBox comboBoxDetailed;
+    private JButton buttonBack;
     private JFrame frame;
 
     public StandingsForm() {

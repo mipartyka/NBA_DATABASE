@@ -154,11 +154,11 @@ public class UtilsDatabase {
             }
         }
     }
-    public static void populateJListFromList(JList<String> jList, List<String> dataList) {
-        DefaultListModel<String> listModel = new DefaultListModel<>();
+    public static void populateJListFromList(JList<Object> jList, List<Object> dataList) {
+        DefaultListModel<Object> listModel = new DefaultListModel<>();
 
         // Populate the list model with data from the provided List<String>
-        for (String data : dataList) {
+        for (Object data : dataList) {
             listModel.addElement(data);
         }
 

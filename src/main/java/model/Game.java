@@ -20,22 +20,17 @@ public class Game {
     private String awayScore;
     private String date;
     private String type;
+    private Integer idHomeTeam;
+    private Integer idAwayTeam;
 
     @Override
     public String toString() {
-        return "Game{" +
-                "id='" + id + '\'' +
-                ", homeTeam='" + homeTeam + '\'' +
-                ", awayTeam='" + awayTeam + '\'' +
-                ", homeScore='" + homeScore + '\'' +
-                ", awayScore='" + awayScore + '\'' +
-                ", date='" + date + '\'' +
-                ", type='" + type + '\'' +
-                '}';
+        return  awayTeam + "  " + awayScore + "  @  "
+                 + homeScore + "  " + homeTeam;
     }
 
-    public static List<String> resultSetToGameList(ResultSet resultSet) {
-        List<String> gameList = new ArrayList<>();
+    public static List<Object> resultSetToGameList(ResultSet resultSet) {
+        List<Object> gameList = new ArrayList<>();
 
         try {
             while (resultSet.next()) {
@@ -47,12 +42,14 @@ public class Game {
                 String awayScore = resultSet.getString("away_team_points");
                 String date = resultSet.getString("date");
                 String type = resultSet.getString("type");
+                Integer idHomeTeam = resultSet.getInt("id_home_team");
+                Integer idAwayTeam = resultSet.getInt("id_away_team");
 
                 // Add other attributes as needed
 
                 // Create Game object and add to list
-                Game game = new Game(gameId, homeTeam, awayTeam, homeScore, awayScore, date, type);
-                gameList.add(game.toString());
+                Game game = new Game(gameId, homeTeam, awayTeam, homeScore, awayScore, date, type, idHomeTeam, idAwayTeam);
+                gameList.add(game);
             }
         } catch (SQLException e) {
             e.printStackTrace();
