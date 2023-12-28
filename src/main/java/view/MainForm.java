@@ -10,6 +10,8 @@ public class MainForm {
     private JTextField textFieldURL;
     private JButton buttonGenerate;
     private JButton buttonGenerateFromDay;
+    private JButton buttonStandings;
+    private JButton buttonGames;
 
     private JFrame frame;
 

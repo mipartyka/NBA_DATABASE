@@ -30,6 +30,14 @@ public class MainFormController {
     }
 
     public void control() {
+        mainForm.getButtonGames().addActionListener(e -> {
+            GamesFormController.getInstance();
+            mainForm.getFrame().dispose();
+        });
+        mainForm.getButtonStandings().addActionListener(e -> {
+            StandingsFormController.getInstance();
+            mainForm.getFrame().dispose();
+        });
         mainForm.getButtonGenerate().addActionListener(e -> onButtonGenerate());
 
         mainForm.getButtonGenerateFromDay().addActionListener(e -> onButtongenerateFromDay());
