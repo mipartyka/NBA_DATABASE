@@ -1,6 +1,7 @@
 package controller;
 
-import model.UtilsDatabase;
+import model.Game;
+import model.utils.UtilsDatabase;
 import view.GamesForm;
 
 import java.sql.SQLException;
@@ -55,7 +56,7 @@ public class GamesFormController {
         }
     }
     private void onButtonSearch() throws SQLException {
-        UtilsDatabase.populateJListFromResultSet(gamesForm.getListGames(), UtilsDatabase.runSqlFunction("get_games_by_date", List.of(gamesForm.getComboBoxYear().getSelectedItem() + "-"  + gamesForm.getComboBoxMonth().getSelectedItem() + "-" + gamesForm.getComboBoxDay().getSelectedItem())));
+        UtilsDatabase.populateJListFromList(gamesForm.getListGames(), Game.resultSetToGameList( UtilsDatabase.runSqlFunction("get_games_by_date", List.of(gamesForm.getComboBoxYear().getSelectedItem() + "-"  + gamesForm.getComboBoxMonth().getSelectedItem() + "-" + gamesForm.getComboBoxDay().getSelectedItem()))));
     }
 
     private void onComboBoxDay() {

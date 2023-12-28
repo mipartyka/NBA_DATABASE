@@ -1,6 +1,6 @@
 package controller;
 
-import model.PythonScriptRunner;
+import model.utils.PythonScriptRunner;
 import view.MainForm;
 
 import javax.swing.event.DocumentEvent;

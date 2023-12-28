@@ -15559,7 +15559,7 @@
 23756973||23756972|c|G
 23756973||23756972|C|G
 23756973||23756972|T|G</Grants>
-      <IntrospectionStateNumber>151712997</IntrospectionStateNumber>
+      <IntrospectionStateNumber>151715431</IntrospectionStateNumber>
       <ServerVersion>9.6.24</ServerVersion>
       <StartupTime>1693816305</StartupTime>
       <TimeZones>true ACDT
@@ -18871,7 +18871,7 @@ false posixrules
 12415||10|C|G
 12415||-9223372036854775808|U|G
 12415||10|U|G</Grants>
-      <IntrospectionStateNumber>151712997</IntrospectionStateNumber>
+      <IntrospectionStateNumber>151715431</IntrospectionStateNumber>
       <ObjectId>22699894</ObjectId>
       <OwnerName>cetphhnl</OwnerName>
     </database>
@@ -71128,9 +71128,9 @@ ElephantSQL gehostet.</Comment>
       <OwnerName>postgres</OwnerName>
     </schema>
     <schema id="11307" parent="474" name="nba_project">
-      <IntrospectionStateNumber>151712997</IntrospectionStateNumber>
-      <IntrospectionTimestamp>2023-12-28.02:54:20.149</IntrospectionTimestamp>
-      <LocalIntrospectionTimestamp>2023-12-28.01:54:30</LocalIntrospectionTimestamp>
+      <IntrospectionStateNumber>151715431</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2023-12-28.04:34:30.618</IntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2023-12-28.03:34:39</LocalIntrospectionTimestamp>
       <ObjectId>23569375</ObjectId>
       <StateNumber>150858439</StateNumber>
       <OwnerName>cetphhnl</OwnerName>
@@ -71155,9 +71155,9 @@ ElephantSQL gehostet.</Comment>
 18121||10|t|G
 18121||10|D|G
 18121||10|w|G</Grants>
-      <IntrospectionStateNumber>151712997</IntrospectionStateNumber>
-      <IntrospectionTimestamp>2023-12-28.02:54:20.149</IntrospectionTimestamp>
-      <LocalIntrospectionTimestamp>2023-12-28.01:54:30</LocalIntrospectionTimestamp>
+      <IntrospectionStateNumber>151715431</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2023-12-28.04:34:30.618</IntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2023-12-28.03:34:39</LocalIntrospectionTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>644</StateNumber>
       <OwnerName>postgres</OwnerName>
@@ -71184,11 +71184,11 @@ ElephantSQL gehostet.</Comment>
     </routine>
     <routine id="11312" parent="11307" name="get_games_by_date">
       <ArgumentsDefinition>target_date character varying</ArgumentsDefinition>
-      <ObjectId>23757687</ObjectId>
-      <ResultsDefinition>TABLE(id_game character varying, home_team integer, away_team integer, date date, type character varying)</ResultsDefinition>
+      <ObjectId>23757804</ObjectId>
+      <ResultsDefinition>TABLE(id_game character varying, home_team integer, away_team integer, date date, type character varying, home_team_points bigint, away_team_points bigint)</ResultsDefinition>
       <ReturnsSet>1</ReturnsSet>
-      <SourceTextLength>321</SourceTextLength>
-      <StateNumber>151712996</StateNumber>
+      <SourceTextLength>768</SourceTextLength>
+      <StateNumber>151715430</StateNumber>
       <LanguageName>plpgsql</LanguageName>
       <OwnerName>cetphhnl</OwnerName>
     </routine>
@@ -82901,7 +82901,7 @@ ElephantSQL gehostet.</Comment>
     </argument>
     <argument id="12284" parent="11312">
       <ArgumentDirection>T</ArgumentDirection>
-      <DasType>table(&quot;id_game&quot; varchar, &quot;home_team&quot; integer, &quot;away_team&quot; integer, &quot;date&quot; date, &quot;type&quot; varchar)|0v</DasType>
+      <DasType>table(&quot;id_game&quot; varchar, &quot;home_team&quot; integer, &quot;away_team&quot; integer, &quot;date&quot; date, &quot;type&quot; varchar, &quot;home_team_points&quot; bigint, &quot;away_team_points&quot; bigint)|0v</DasType>
     </argument>
     <argument id="12285" parent="11312" name="target_date">
       <DasType>varchar|0s</DasType>

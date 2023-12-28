@@ -1,7 +1,6 @@
 package controller;
 
-import model.UtilsDatabase;
-import org.postgresql.core.Utils;
+import model.utils.UtilsDatabase;
 import view.StandingsForm;
 
 import java.sql.SQLException;

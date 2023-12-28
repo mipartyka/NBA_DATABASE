@@ -2,11 +2,10 @@ package controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Objects;
 
-import model.UtilsDatabase;
-import model.PythonScriptRunner;
+import model.utils.UtilsDatabase;
+import model.utils.PythonScriptRunner;
 
 public class MainController {
     private static MainController mainController;

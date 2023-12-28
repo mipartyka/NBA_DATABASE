@@ -1,4 +1,4 @@
-package model;
+package model.utils;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -154,27 +154,12 @@ public class UtilsDatabase {
             }
         }
     }
-    public static void populateJListFromResultSet(JList<String> jList, ResultSet resultSet) {
+    public static void populateJListFromList(JList<String> jList, List<String> dataList) {
         DefaultListModel<String> listModel = new DefaultListModel<>();
 
-        try {
-            // Populate the list model with data
-            while (resultSet.next()) {
-                // Assuming the result set has a single column of type String
-                String data = resultSet.getString(1);
-                listModel.addElement(data);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            // Close the ResultSet if necessary
-            try {
-                if (resultSet != null) {
-                    resultSet.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        // Populate the list model with data from the provided List<String>
+        for (String data : dataList) {
+            listModel.addElement(data);
         }
 
         // Set the list model for the given JList
