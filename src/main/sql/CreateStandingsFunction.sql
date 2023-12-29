@@ -8,6 +8,7 @@ CREATE OR REPLACE FUNCTION get_league_standings(conference_filter character vary
                       team_name VARCHAR(255),
                       wins BIGINT,
                       losses BIGINT,
+                      win_percentage TEXT,  -- Changed the size to 5
                       points_for BIGINT,
                       points_against BIGINT
                   ) AS $$
@@ -18,6 +19,12 @@ BEGIN
                     t.name AS team_name,
                     COUNT(DISTINCT CASE WHEN t.id_team = tg.id_team AND tg.pts > tg.opponent_pts THEN tg.id_game END)::BIGINT AS wins,
                     COUNT(DISTINCT CASE WHEN t.id_team = tg.id_team AND tg.pts < tg.opponent_pts THEN tg.id_game END)::BIGINT AS losses,
+                    TO_CHAR(
+                                (COUNT(DISTINCT CASE WHEN t.id_team = tg.id_team AND tg.pts > tg.opponent_pts THEN tg.id_game END)::NUMERIC /
+                                 (COUNT(DISTINCT CASE WHEN t.id_team = tg.id_team AND tg.pts > tg.opponent_pts THEN tg.id_game END)::NUMERIC +
+                                  COUNT(DISTINCT CASE WHEN t.id_team = tg.id_team AND tg.pts < tg.opponent_pts THEN tg.id_game END)::NUMERIC)) * 100,
+                                'FM999.000'
+                    ) AS win_percentage,
                     SUM(CASE WHEN t.id_team = tg.id_team THEN tg.pts ELSE 0 END)::BIGINT AS points_for,
                     SUM(CASE WHEN t.id_team = tg.id_team THEN tg.opponent_pts ELSE 0 END)::BIGINT AS points_against
         FROM

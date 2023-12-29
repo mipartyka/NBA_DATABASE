@@ -53,6 +53,7 @@ public class BoxScoreFormController {
         boxScoreForm.getButtonAwayTeam().setText(game.getAwayTeam());
         boxScoreForm.getButtonHomeTeam().setEnabled(false);
         UtilsDatabase.fillTableFromResultSet( boxScoreForm.getTableBoxScore(), UtilsDatabase.runSqlFunction("get_player_box_score", List.of(game.getId(), game.getIdHomeTeam())));
+        Utils.addDescriptionRowToTable(boxScoreForm.getTableBoxScore(), List.of("ID", "NAME", "LASTNAME", "MIN", "PTS", "REB", "AST", "STL", "BLK", "FGM", "FGA", "FG%", "3PM", "3PA", "3P%", "FTM", "FTA", "FT%", "OREB", "DREB", "TO", "FOULS", "+/-"));
     }
 
     private void onButtonHomeTeam() {
@@ -60,6 +61,7 @@ public class BoxScoreFormController {
         boxScoreForm.getButtonHomeTeam().setEnabled(false);
         try {
             UtilsDatabase.fillTableFromResultSet(boxScoreForm.getTableBoxScore(), UtilsDatabase.runSqlFunction("get_player_box_score", List.of(((Game) Utils.PARAMS.get("CURRENT_GAME")).getId(), ((Game) Utils.PARAMS.get("CURRENT_GAME")).getIdHomeTeam())));
+            Utils.addDescriptionRowToTable(boxScoreForm.getTableBoxScore(), List.of("ID", "NAME", "LASTNAME", "MIN", "PTS", "REB", "AST", "STL", "BLK", "FGM", "FGA", "FG%", "3PM", "3PA", "3P%", "FTM", "FTA", "FT%", "OREB", "DREB", "TO", "FOULS", "+/-"));
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -69,6 +71,7 @@ public class BoxScoreFormController {
         boxScoreForm.getButtonHomeTeam().setEnabled(true);
         try {
             UtilsDatabase.fillTableFromResultSet(boxScoreForm.getTableBoxScore(), UtilsDatabase.runSqlFunction("get_player_box_score", List.of(((Game) Utils.PARAMS.get("CURRENT_GAME")).getId(), ((Game) Utils.PARAMS.get("CURRENT_GAME")).getIdAwayTeam())));
+            Utils.addDescriptionRowToTable(boxScoreForm.getTableBoxScore(), List.of("ID", "NAME", "LASTNAME", "MIN", "PTS", "REB", "AST", "STL", "BLK", "FGM", "FGA", "FG%", "3PM", "3PA", "3P%", "FTM", "FTA", "FT%", "OREB", "DREB", "TO", "FOULS", "+/-"));
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
