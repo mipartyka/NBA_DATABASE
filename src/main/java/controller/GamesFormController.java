@@ -69,8 +69,11 @@ public class GamesFormController {
     }
 
     private void onComboBoxMonth() {
+        int currentDay = 1;
         gamesForm.getButtonSearch().setEnabled(!Objects.isNull(gamesForm.getComboBoxMonth().getSelectedItem()) && !Objects.isNull(gamesForm.getComboBoxYear().getSelectedItem()) && !Objects.isNull(gamesForm.getComboBoxDay().getSelectedItem()));
-        int currentDay = (int) gamesForm.getComboBoxDay().getSelectedItem();
+        if(gamesForm.getComboBoxDay().getSelectedItem() != null){
+            currentDay = (int) gamesForm.getComboBoxDay().getSelectedItem();
+        }
         gamesForm.getComboBoxDay().removeAllItems();
         int daysInMonth = LocalDate.of((int) gamesForm.getComboBoxYear().getSelectedItem(), (Month) gamesForm.getComboBoxMonth().getSelectedItem(), 1).lengthOfMonth();
         for (int day = 1; day <= daysInMonth; day++) {
