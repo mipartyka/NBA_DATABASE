@@ -156,11 +156,14 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+DROP FUNCTION IF EXISTS get_player_box_score(character varying, INT);
+
 CREATE OR REPLACE FUNCTION get_player_box_score(p_id_game VARCHAR(255), p_id_team INT)
     RETURNS TABLE (
           player_id INT,
           name character varying,
           surname character varying,
+          mp TIME,
           pts INT,
           trb INT,
           ast INT,
@@ -178,6 +181,7 @@ CREATE OR REPLACE FUNCTION get_player_box_score(p_id_game VARCHAR(255), p_id_tea
           orb INT,
           drb INT,
           tov INT,
+          pf INT,
           plus_minus INT  -- Added plus_minus for player
                   ) AS $$
 BEGIN
@@ -186,6 +190,7 @@ BEGIN
         pg.id_player,
         p.name ,
         p.surname,
+        pg.mp,
         pg.pts,
         pg.trb,
         pg.ast,
@@ -203,6 +208,7 @@ BEGIN
         pg.orb,
         pg.drb,
         pg.tov AS tov,
+        pg.pf,
         pg.plus_minus  -- Added plus_minus for player
         FROM
             player_game pg
