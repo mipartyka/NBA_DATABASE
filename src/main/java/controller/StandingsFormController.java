@@ -82,7 +82,7 @@ public class StandingsFormController {
                 throw new RuntimeException(e);
             }
         }
-        Utils.addDescriptionRowToTable(standingsForm.getTableStandings(), List.of("", "Team", "Wins", "Losses", "Win Percentage", "Points For", "Points Against"));
+//        Utils.addDescriptionRowToTable(standingsForm.getTableStandings(), List.of("", "Team", "Wins", "Losses", "Win Percentage", "Points For", "Points Against"));
         Utils.addRowNumbersToTable(standingsForm.getTableStandings(), "#");
     }
 
@@ -91,7 +91,7 @@ public class StandingsFormController {
             standingsForm.getComboBoxDetailed().setEnabled(false);
             try{
                 UtilsDatabase.fillTableFromResultSet(standingsForm.getTableStandings(), UtilsDatabase.runSqlFunction("get_league_standings", List.of("league")));
-                Utils.addDescriptionRowToTable(standingsForm.getTableStandings(), List.of("", "Team", "Wins", "Losses", "Win Percentage", "Points For", "Points Against"));
+//                Utils.addDescriptionRowToTable(standingsForm.getTableStandings(), List.of("", "Team", "Wins", "Losses", "Win Percentage", "Points For", "Points Against"));
                 Utils.addRowNumbersToTable(standingsForm.getTableStandings(), "#");
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -127,7 +127,7 @@ public class StandingsFormController {
     private static void initiallyFillTable() {
         try {
             UtilsDatabase.fillTableFromResultSet(standingsForm.getTableStandings(), UtilsDatabase.runSqlFunction("get_league_standings", List.of("league")));
-            Utils.addDescriptionRowToTable(standingsForm.getTableStandings(), List.of("", "Team", "Wins", "Losses", "Win Percentage", "Points For", "Points Against"));
+//            Utils.addDescriptionRowToTable(standingsForm.getTableStandings(), List.of("", "Team", "Wins", "Losses", "Win Percentage", "Points For", "Points Against"));
             Utils.addRowNumbersToTable(standingsForm.getTableStandings(), "#");
         } catch (SQLException e) {
             e.printStackTrace();

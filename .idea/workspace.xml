@@ -11,10 +11,21 @@
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/a2f76c5b-0d7a-4e90-b3b0-5e748e157866/storage_v2/_src_/database/cetphhnl.HAY31w/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a2f76c5b-0d7a-4e90-b3b0-5e748e157866/storage_v2/_src_/database/cetphhnl.HAY31w/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/BoxScoreFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/BoxScoreFormController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/MainFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MainFormController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/StandingsFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/StandingsFormController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/utils/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/utils/UtilsDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/utils/UtilsDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/BoxScoreForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/BoxScoreForm.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/MainForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainForm.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/MainForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/StandingsForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/StandingsForm.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/sql/CreateBoxScoreFunction.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/sql/CreateBoxScoreFunction.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/sql/CreateStandingsFunction.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/sql/CreateStandingsFunction.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/sql/create_tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/sql/create_tables.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controller/BoxScoreFormController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/BoxScoreFormController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controller/StandingsFormController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/StandingsFormController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/utils/Utils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/utils/Utils.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +66,7 @@
     "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.STATE": "left",
     "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "208",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "48-add-description-rows-to-every-table",
+    "git-widget-placeholder": "50-add-league-leaders-frame",
     "last_opened_file_path": "C:/Users/sonax/IdeaProjects/NBA_DATABASE",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -189,7 +200,7 @@
       <workItem from="1703769334689" duration="5761000" />
       <workItem from="1703776155601" duration="6953000" />
       <workItem from="1703790536547" duration="288000" />
-      <workItem from="1703857642961" duration="6190000" />
+      <workItem from="1703857642961" duration="21150000" />
     </task>
     <servers />
   </component>

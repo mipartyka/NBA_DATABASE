@@ -1,5 +1,7 @@
 package model.utils;
 
+import model.Player;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
@@ -124,7 +126,7 @@ public class UtilsDatabase {
             int columnCount = resultSet.getMetaData().getColumnCount();
             String[] columnNames = new String[columnCount];
             for (int i = 1; i <= columnCount; i++) {
-                columnNames[i - 1] = resultSet.getMetaData().getColumnName(i);
+                columnNames[i - 1] = resultSet.getMetaData().getColumnName(i).replace("_", " ").replace("pos", "Position").toUpperCase();
             }
 
             // Create a DefaultTableModel with column names
@@ -166,4 +168,14 @@ public class UtilsDatabase {
         jList.setModel(listModel);
     }
 
+
+
+    public List<Player> getPlayers() {
+        try {
+            ResultSet resultSet = runSqlFunction("get_players", List.of());
+            return Utils.getPlayersFromResultSet(resultSet);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

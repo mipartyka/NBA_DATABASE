@@ -35,6 +35,10 @@ public class MainFormController {
             GamesFormController.getInstance();
             mainForm.getFrame().dispose();
         });
+        mainForm.getButtonLeagueLeaders().addActionListener(e -> {
+            LeagueLeadersFormController.getInstance();
+            mainForm.getFrame().dispose();
+        });
         mainForm.getButtonStandings().addActionListener(e -> {
             StandingsFormController.getInstance();
             mainForm.getFrame().dispose();

@@ -160,10 +160,10 @@ DROP FUNCTION IF EXISTS get_player_box_score(character varying, INT);
 
 CREATE OR REPLACE FUNCTION get_player_box_score(p_id_game VARCHAR(255), p_id_team INT)
     RETURNS TABLE (
-          player_id INT,
+          id INT,
           name character varying,
-          surname character varying,
-          mp TIME,
+          lastname character varying,
+          minutes TIME,
           pts INT,
           trb INT,
           ast INT,
@@ -187,10 +187,10 @@ CREATE OR REPLACE FUNCTION get_player_box_score(p_id_game VARCHAR(255), p_id_tea
 BEGIN
     RETURN QUERY
         SELECT
-        pg.id_player,
+        pg.id_player as id,
         p.name ,
-        p.surname,
-        pg.mp,
+        p.surname as lastname,
+        pg.mp as minutes,
         pg.pts,
         pg.trb,
         pg.ast,

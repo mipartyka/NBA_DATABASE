@@ -5,28 +5,28 @@ DROP FUNCTION IF EXISTS get_league_standings(character varying);
 CREATE OR REPLACE FUNCTION get_league_standings(conference_filter character varying)
     RETURNS TABLE (
                       pos BIGINT,
-                      team_name VARCHAR(255),
-                      wins BIGINT,
-                      losses BIGINT,
-                      win_percentage TEXT,  -- Changed the size to 5
-                      points_for BIGINT,
-                      points_against BIGINT
+                      Team VARCHAR(255),
+                      Wins BIGINT,
+                      Losses BIGINT,
+                      Win_Percentage TEXT,  -- Changed the size to 5
+                      Points_For BIGINT,
+                      Points_Against BIGINT
                   ) AS $$
 BEGIN
     RETURN QUERY
         SELECT
                     ROW_NUMBER() OVER (ORDER BY wins DESC, points_for DESC) AS pos,
-                    t.name AS team_name,
-                    COUNT(DISTINCT CASE WHEN t.id_team = tg.id_team AND tg.pts > tg.opponent_pts THEN tg.id_game END)::BIGINT AS wins,
-                    COUNT(DISTINCT CASE WHEN t.id_team = tg.id_team AND tg.pts < tg.opponent_pts THEN tg.id_game END)::BIGINT AS losses,
+                    t.name AS Team,
+                    COUNT(DISTINCT CASE WHEN t.id_team = tg.id_team AND tg.pts > tg.opponent_pts THEN tg.id_game END)::BIGINT AS Wins,
+                    COUNT(DISTINCT CASE WHEN t.id_team = tg.id_team AND tg.pts < tg.opponent_pts THEN tg.id_game END)::BIGINT AS Losses,
                     TO_CHAR(
                                 (COUNT(DISTINCT CASE WHEN t.id_team = tg.id_team AND tg.pts > tg.opponent_pts THEN tg.id_game END)::NUMERIC /
                                  (COUNT(DISTINCT CASE WHEN t.id_team = tg.id_team AND tg.pts > tg.opponent_pts THEN tg.id_game END)::NUMERIC +
                                   COUNT(DISTINCT CASE WHEN t.id_team = tg.id_team AND tg.pts < tg.opponent_pts THEN tg.id_game END)::NUMERIC)) * 100,
                                 'FM999.000'
-                    ) AS win_percentage,
-                    SUM(CASE WHEN t.id_team = tg.id_team THEN tg.pts ELSE 0 END)::BIGINT AS points_for,
-                    SUM(CASE WHEN t.id_team = tg.id_team THEN tg.opponent_pts ELSE 0 END)::BIGINT AS points_against
+                    ) AS Win_Percentage,
+                    SUM(CASE WHEN t.id_team = tg.id_team THEN tg.pts ELSE 0 END)::BIGINT AS Points_For,
+                    SUM(CASE WHEN t.id_team = tg.id_team THEN tg.opponent_pts ELSE 0 END)::BIGINT AS Points_Against
         FROM
             team t
                 LEFT JOIN
