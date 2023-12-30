@@ -12,6 +12,7 @@ public class MainForm {
     private JButton buttonGenerateFromDay;
     private JButton buttonStandings;
     private JButton buttonGames;
+    private JButton buttonLeagueLeaders;
 
     private JFrame frame;
 
