@@ -114,7 +114,10 @@ public class StandingsFormController {
     }
 
     private void onButtonBack() {
-        MainFormController.getInstance();
+        if(Utils.PARAMS.containsKey("CURRENT_USER"))
+            MainFormUserController.getInstance();
+        else
+            MainFormController.getInstance();
         standingsForm.getFrame().dispose();
     }
 

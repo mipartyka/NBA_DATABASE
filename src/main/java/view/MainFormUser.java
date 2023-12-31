@@ -5,23 +5,20 @@ import lombok.Getter;
 import javax.swing.*;
 
 @Getter
-public class MainForm {
+public class MainFormUser {
     private JPanel panel;
-    private JTextField textFieldURL;
-    private JButton buttonGenerate;
-    private JButton buttonGenerateFromDay;
-    private JButton buttonStandings;
     private JButton buttonGames;
+    private JButton buttonStandings;
+    private JButton buttonLogOut;
     private JButton buttonLeagueLeaders;
-    private JButton buttonLogIn;
-    private JButton buttonRegister;
-
+    private JLabel labelLogin;
     private JFrame frame;
 
-    public MainForm() {
-        frame = new JFrame("MainForm");
+    public MainFormUser() {
+        frame = new JFrame("Main Form");
         frame.setContentPane(panel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
+        frame.setLocationRelativeTo(null);
     }
 }

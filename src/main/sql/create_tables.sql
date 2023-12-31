@@ -198,3 +198,10 @@ ADD CONSTRAINT fk_home_team FOREIGN KEY (id_home_team) REFERENCES team(id_team);
 
 ALTER TABLE game
 ADD CONSTRAINT fk_away_team FOREIGN KEY (id_away_team) REFERENCES team(id_team);
+
+CREATE TABLE "user" (
+                       id_user SERIAL PRIMARY KEY,
+                       login VARCHAR(255) NOT NULL,
+                       password VARCHAR(255) NOT NULL,
+                       role VARCHAR(50) -- Assuming UserRole is a string, adjust the size accordingly
+);
