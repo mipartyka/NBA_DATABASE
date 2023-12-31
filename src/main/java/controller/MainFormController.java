@@ -43,6 +43,14 @@ public class MainFormController {
             StandingsFormController.getInstance();
             mainForm.getFrame().dispose();
         });
+        mainForm.getButtonLogIn().addActionListener(e -> {
+            LogInFormController.getInstance();
+            mainForm.getFrame().dispose();
+        });
+        mainForm.getButtonRegister().addActionListener(e -> {
+            RegisterFormController.getInstance();
+            mainForm.getFrame().dispose();
+        });
         mainForm.getButtonGenerate().addActionListener(e -> onButtonGenerate());
 
         mainForm.getButtonGenerateFromDay().addActionListener(e -> onButtongenerateFromDay());

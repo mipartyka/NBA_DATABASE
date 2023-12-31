@@ -58,7 +58,10 @@ public class GamesFormController {
     }
 
     private void onButtonBack() {
-        MainFormController.getInstance();
+        if(Utils.PARAMS.get("CURRENT_USER") != null)
+            MainFormUserController.getInstance();
+        else
+            MainFormController.getInstance();
         gamesForm.getFrame().dispose();
     }
 

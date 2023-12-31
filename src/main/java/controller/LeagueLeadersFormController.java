@@ -65,8 +65,11 @@ public class LeagueLeadersFormController {
     }
 
     private void onButtonBack() {
+        if(Utils.PARAMS.get("CURRENT_USER") != null)
+            MainFormUserController.getInstance();
+        else
+            MainFormController.getInstance();
         leagueLeadersForm.getFrame().dispose();
-        MainFormController.getInstance();
     }
     private static void fillComboBoxFilter() {
         List<Object> stats = List.of("NAME", "LASTNAME", "MINUTES", "POINTS", "REBOUNDS", "ASSISTS", "STEALS", "BLOCKS", "FG MADE", "FG ATTEMPTED", "FG%", "3P MADE", "3P ATTEMPTED", "3P%", "FT MADE", "FT ATTEMPTED", "FT%", "OFF REBOUNDS", "DEF REBOUNDS", "TURNOVERS", "FOULS", "PLUS MINUS", "ID");
