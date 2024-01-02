@@ -5,18 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c95aad3-e260-4f3f-bc65-2ac26d9d7971" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a2f76c5b-0d7a-4e90-b3b0-5e748e157866.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a2f76c5b-0d7a-4e90-b3b0-5e748e157866.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a2f76c5b-0d7a-4e90-b3b0-5e748e157866/storage_v2/_src_/database/cetphhnl.HAY31w/schema/nba_project.Bx5wJg.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a2f76c5b-0d7a-4e90-b3b0-5e748e157866/storage_v2/_src_/database/cetphhnl.HAY31w/schema/nba_project.Bx5wJg.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a2f76c5b-0d7a-4e90-b3b0-5e748e157866/storage_v2/_src_/database/cetphhnl.HAY31w/schema/nba_project.Bx5wJg.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a2f76c5b-0d7a-4e90-b3b0-5e748e157866/storage_v2/_src_/database/cetphhnl.HAY31w/schema/nba_project.Bx5wJg.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a2f76c5b-0d7a-4e90-b3b0-5e748e157866/storage_v2/_src_/database/cetphhnl.HAY31w/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a2f76c5b-0d7a-4e90-b3b0-5e748e157866/storage_v2/_src_/database/cetphhnl.HAY31w/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a2f76c5b-0d7a-4e90-b3b0-5e748e157866.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/GamesFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/GamesFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/LeagueLeadersFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/LeagueLeadersFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/MainFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MainFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/StandingsFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/StandingsFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/MainForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainForm.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/MainForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/sql/create_tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/sql/create_tables.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/intellij/uiDesigner/core/GridConstraints.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/intellij/uiDesigner/core/GridConstraints.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controller/BoxScoreFormController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/BoxScoreFormController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controller/BoxScoreFormController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/BoxScoreFormController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controller/GamesFormController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/GamesFormController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controller/LeagueLeadersFormController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/LeagueLeadersFormController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controller/LeagueLeadersFormController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/LeagueLeadersFormController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controller/LogInFormController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/LogInFormController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controller/LogInFormController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/LogInFormController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/MainController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controller/MainFormController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/MainFormController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controller/MainFormController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/MainFormController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controller/MainFormUserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/MainFormUserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controller/RegisterFormController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/RegisterFormController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controller/RegisterFormController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/RegisterFormController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controller/StandingsFormController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/StandingsFormController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/user/UserRole.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/user/UserRole.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/utils/Utils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/utils/Utils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/utils/UtilsDatabase.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/utils/UtilsDatabase.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +47,13 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -50,8 +67,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "UI_DESIGNER_EDITOR_MODE.PaletteManager.STATE": "ToolWindow",
     "UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH": "116",
     "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW": "true",
@@ -65,6 +84,9 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "settings.editor.selected.configurable": "database.query.execution",
     "vue.rearranger.settings.migration": "true"
   },
@@ -77,6 +99,9 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\sonax\IdeaProjects\NBA_DATABASE\src\main\java\view" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\sonax\OneDrive\Pulpit\uczelnia\bazy\NBA_project\AGH_SQL\src\main" />
     </key>
   </component>
   <component name="RunManager">
