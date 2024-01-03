@@ -44,6 +44,10 @@ public class MainFormUserController {
             MainFormController.getInstance();
             mainFormUser.getFrame().dispose();
         });
+        mainFormUser.getButtonPlot().addActionListener(e -> {
+            PlotFormController.getInstance();
+            mainFormUser.getFrame().dispose();
+        });
     }
     private static void init() {
         mainFormUser.getFrame().setVisible(true);

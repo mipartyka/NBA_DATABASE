@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 public class PythonScriptRunner {
-    public void runPythonScript(String scriptPath, List<Object> args) throws IOException {
+    public static void runPythonScript(String scriptPath, List<Object> args) throws IOException {
         try {
             // Build the command to run the Python script
             ProcessBuilder processBuilder = new ProcessBuilder("python3", scriptPath);

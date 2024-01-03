@@ -5,28 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c95aad3-e260-4f3f-bc65-2ac26d9d7971" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a2f76c5b-0d7a-4e90-b3b0-5e748e157866.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a2f76c5b-0d7a-4e90-b3b0-5e748e157866/storage_v2/_src_/database/cetphhnl.HAY31w/schema/nba_project.Bx5wJg.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a2f76c5b-0d7a-4e90-b3b0-5e748e157866/storage_v2/_src_/database/cetphhnl.HAY31w/schema/nba_project.Bx5wJg.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/intellij/uiDesigner/core/GridConstraints.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/intellij/uiDesigner/core/GridConstraints.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/BoxScoreFormController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/BoxScoreFormController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/BoxScoreFormController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/BoxScoreFormController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/GamesFormController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/GamesFormController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/LeagueLeadersFormController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/LeagueLeadersFormController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/LeagueLeadersFormController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/LeagueLeadersFormController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/LogInFormController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/LogInFormController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/LogInFormController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/LogInFormController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/MainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/MainFormController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/MainFormController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/MainFormController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/MainFormController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/MainFormUserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/MainFormUserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/RegisterFormController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/RegisterFormController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/RegisterFormController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/RegisterFormController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/StandingsFormController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/StandingsFormController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/model/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/model/user/UserRole.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/user/UserRole.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/model/utils/Utils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/utils/Utils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/model/utils/UtilsDatabase.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/utils/UtilsDatabase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/GamesFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/GamesFormController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/MainFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MainFormController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/MainFormUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MainFormUserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/utils/PythonScriptRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/utils/PythonScriptRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/MainForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainForm.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/MainForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/MainFormUser.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainFormUser.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/MainFormUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainFormUser.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,37 +54,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "UI_DESIGNER_EDITOR_MODE.PaletteManager.STATE": "ToolWindow",
-    "UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH": "116",
-    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW": "true",
-    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.STATE": "left",
-    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "208",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "52-implement-user-logging",
-    "last_opened_file_path": "C:/Users/sonax/IdeaProjects/NBA_DATABASE/src/main/java/view",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "database.query.execution",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.PaletteManager.STATE&quot;: &quot;ToolWindow&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH&quot;: &quot;116&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW&quot;: &quot;true&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.STATE&quot;: &quot;left&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH&quot;: &quot;208&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;52-implement-user-logging&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/sonax/IdeaProjects/NBA_DATABASE/src/main/java/view&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;database.query.execution&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\sonax\IdeaProjects\NBA_DATABASE\src\main\java\view" />
@@ -224,6 +213,8 @@
       <workItem from="1703790536547" duration="288000" />
       <workItem from="1703857642961" duration="22033000" />
       <workItem from="1703977700858" duration="7441000" />
+      <workItem from="1704239170896" duration="2438000" />
+      <workItem from="1704243709696" duration="4111000" />
     </task>
     <servers />
   </component>

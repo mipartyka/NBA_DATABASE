@@ -15,6 +15,7 @@ public class MainForm {
     private JButton buttonLeagueLeaders;
     private JButton buttonLogIn;
     private JButton buttonRegister;
+    private JButton buttonPlot;
 
     private JFrame frame;
 
