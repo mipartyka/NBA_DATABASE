@@ -1,5 +1,7 @@
 package controller;
 
+import model.user.User;
+import model.user.UserRole;
 import model.utils.PythonScriptRunner;
 import model.utils.Utils;
 import view.PlotForm;
@@ -55,7 +57,13 @@ public class PlotFormController {
         }
     }
     private void onButtonBack() {
-        MainFormController.getInstance();
+        if(Utils.PARAMS.get("CURRENT_USER") != null)
+            if (((User) Utils.PARAMS.get("CURRENT_USER")).getRole() == UserRole.ADMIN)
+                MainFormAdminController.getInstance();
+            else
+                MainFormUserController.getInstance();
+        else
+            MainFormController.getInstance();
         plotForm.getFrame().dispose();
     }
     private static void fillComboBoxPlayerTeam() {

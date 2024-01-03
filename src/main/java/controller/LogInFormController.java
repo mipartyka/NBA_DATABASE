@@ -53,7 +53,10 @@ public class LogInFormController {
                     Utils.PARAMS.put("CURRENT_USER", user);
                     logInForm.getFrame().dispose();
                     Utils.displayOptionPane("Logged in successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-                    MainFormUserController.getInstance();
+                    if (user.getRole() == UserRole.ADMIN)
+                        MainFormAdminController.getInstance();
+                    else
+                        MainFormUserController.getInstance();
                 }
             } else
                 Utils.displayOptionPane("Login and Password do not match", "Error", JOptionPane.ERROR_MESSAGE);
