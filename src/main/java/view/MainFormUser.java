@@ -12,6 +12,7 @@ public class MainFormUser {
     private JButton buttonLogOut;
     private JButton buttonLeagueLeaders;
     private JLabel labelLogin;
+    private JButton buttonPlot;
     private JFrame frame;
 
     public MainFormUser() {

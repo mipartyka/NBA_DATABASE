@@ -51,6 +51,10 @@ public class MainFormController {
             RegisterFormController.getInstance();
             mainForm.getFrame().dispose();
         });
+        mainForm.getButtonPlot().addActionListener(e -> {
+            PlotFormController.getInstance();
+            mainForm.getFrame().dispose();
+        });
         mainForm.getButtonGenerate().addActionListener(e -> onButtonGenerate());
 
         mainForm.getButtonGenerateFromDay().addActionListener(e -> onButtongenerateFromDay());

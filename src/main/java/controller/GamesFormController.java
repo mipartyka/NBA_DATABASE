@@ -103,7 +103,7 @@ public class GamesFormController {
     private static void fillYearComboBox() {
         int currentYear = LocalDate.now().getYear();
         gamesForm.getComboBoxYear().addItem(currentYear);
-        gamesForm.getComboBoxYear().addItem(currentYear + 1);
+        gamesForm.getComboBoxYear().addItem(currentYear - 1);
     }
 
     private static void fillMonthComboBox() {
