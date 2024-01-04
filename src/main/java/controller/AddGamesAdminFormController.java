@@ -89,7 +89,7 @@ public class AddGamesAdminFormController {
         String[] days = addGamesAdminForm.getComboBoxWeek().getSelectedItem().toString().split(" - ");
         LocalDate start = LocalDate.parse(days[0]);
         LocalDate end = LocalDate.parse(days[1]);
-        for (LocalDate date = start; date.isAfter(end); date = date.plusDays(1)) {
+        for (LocalDate date = start; date.isBefore(end.plusDays(1)); date = date.plusDays(1)) {
             try {
                 PythonScriptRunner.runPythonScript("src/main/python/GenerateGameInsertsForDay.py", List.of( String.valueOf(date.getMonthValue()), String.valueOf(date.getDayOfMonth()), String.valueOf(date.getYear())));
             } catch (Exception e) {

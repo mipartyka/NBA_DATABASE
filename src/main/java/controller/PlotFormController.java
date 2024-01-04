@@ -25,6 +25,8 @@ public class PlotFormController {
         if (Objects.isNull(plotFormController)) {
             plotForm = new PlotForm();
             plotFormController = new PlotFormController();
+            fillComboBoxPlayerTeam();
+            fillComboBoxXY();
         }
         init();
         return plotFormController;
@@ -37,12 +39,15 @@ public class PlotFormController {
             }
         });
         plotForm.getButtonBack().addActionListener(e -> onButtonBack());
-        plotForm.getComboBoxPlayerTeam().addActionListener(e -> fillComboBoxXY());
+        plotForm.getComboBoxPlayerTeam().addActionListener(e -> onComboBoxPlayerTeam());
         plotForm.getButtonGenerate().addActionListener(e -> onButtonGenerate());
     }
     private static void init() {
         plotForm.getFrame().setVisible(true);
-        fillComboBoxPlayerTeam();
+    }
+    private void onComboBoxPlayerTeam() {
+        plotForm.getComboBoxX().removeAllItems();
+        plotForm.getComboBoxY().removeAllItems();
         fillComboBoxXY();
     }
     private void onButtonGenerate() {
