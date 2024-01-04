@@ -1,5 +1,7 @@
 package controller;
 
+import model.user.User;
+import model.user.UserRole;
 import model.utils.Utils;
 import model.utils.UtilsDatabase;
 import view.StandingsForm;
@@ -21,6 +23,7 @@ public class StandingsFormController {
         if (Objects.isNull(standingsFormController)) {
             standingsForm = new StandingsForm();
             standingsFormController = new StandingsFormController();
+            fillComboBox();
         }
         init();
         return standingsFormController;
@@ -82,7 +85,6 @@ public class StandingsFormController {
                 throw new RuntimeException(e);
             }
         }
-//        Utils.addDescriptionRowToTable(standingsForm.getTableStandings(), List.of("", "Team", "Wins", "Losses", "Win Percentage", "Points For", "Points Against"));
         Utils.addRowNumbersToTable(standingsForm.getTableStandings(), "#");
     }
 
@@ -114,8 +116,11 @@ public class StandingsFormController {
     }
 
     private void onButtonBack() {
-        if(Utils.PARAMS.containsKey("CURRENT_USER"))
-            MainFormUserController.getInstance();
+        if(Utils.PARAMS.get("CURRENT_USER") != null)
+            if (((User) Utils.PARAMS.get("CURRENT_USER")).getRole() == UserRole.ADMIN)
+                MainFormAdminController.getInstance();
+            else
+                MainFormUserController.getInstance();
         else
             MainFormController.getInstance();
         standingsForm.getFrame().dispose();
@@ -124,13 +129,11 @@ public class StandingsFormController {
     private static void init() {
         standingsForm.getFrame().setVisible(true);
         initiallyFillTable();
-        fillComboBox();
     }
 
     private static void initiallyFillTable() {
         try {
             UtilsDatabase.fillTableFromResultSet(standingsForm.getTableStandings(), UtilsDatabase.runSqlFunction("get_league_standings", List.of("league")));
-//            Utils.addDescriptionRowToTable(standingsForm.getTableStandings(), List.of("", "Team", "Wins", "Losses", "Win Percentage", "Points For", "Points Against"));
             Utils.addRowNumbersToTable(standingsForm.getTableStandings(), "#");
         } catch (SQLException e) {
             e.printStackTrace();

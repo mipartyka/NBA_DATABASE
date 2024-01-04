@@ -7,9 +7,6 @@ import javax.swing.*;
 @Getter
 public class MainForm {
     private JPanel panel;
-    private JTextField textFieldURL;
-    private JButton buttonGenerate;
-    private JButton buttonGenerateFromDay;
     private JButton buttonStandings;
     private JButton buttonGames;
     private JButton buttonLeagueLeaders;

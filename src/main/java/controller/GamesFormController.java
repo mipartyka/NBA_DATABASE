@@ -1,6 +1,8 @@
 package controller;
 
 import model.Game;
+import model.user.User;
+import model.user.UserRole;
 import model.utils.Utils;
 import model.utils.UtilsDatabase;
 import view.GamesForm;
@@ -23,6 +25,7 @@ public class GamesFormController {
         if (Objects.isNull(gamesFormController)) {
             gamesForm = new GamesForm();
             gamesFormController = new GamesFormController();
+            fillComboBoxes();
         }
         init();
         return gamesFormController;
@@ -45,6 +48,9 @@ public class GamesFormController {
 
     private static void init() {
         gamesForm.getFrame().setVisible(true);
+    }
+
+    private static void fillComboBoxes() {
         fillYearComboBox();
         fillMonthComboBox();
         fillDayComboBox();
@@ -59,7 +65,10 @@ public class GamesFormController {
 
     private void onButtonBack() {
         if(Utils.PARAMS.get("CURRENT_USER") != null)
-            MainFormUserController.getInstance();
+            if (((User) Utils.PARAMS.get("CURRENT_USER")).getRole() == UserRole.ADMIN)
+                MainFormAdminController.getInstance();
+            else
+                MainFormUserController.getInstance();
         else
             MainFormController.getInstance();
         gamesForm.getFrame().dispose();

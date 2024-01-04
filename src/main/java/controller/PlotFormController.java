@@ -1,5 +1,7 @@
 package controller;
 
+import model.user.User;
+import model.user.UserRole;
 import model.utils.PythonScriptRunner;
 import model.utils.Utils;
 import view.PlotForm;
@@ -23,6 +25,8 @@ public class PlotFormController {
         if (Objects.isNull(plotFormController)) {
             plotForm = new PlotForm();
             plotFormController = new PlotFormController();
+            fillComboBoxPlayerTeam();
+            fillComboBoxXY();
         }
         init();
         return plotFormController;
@@ -35,12 +39,15 @@ public class PlotFormController {
             }
         });
         plotForm.getButtonBack().addActionListener(e -> onButtonBack());
-        plotForm.getComboBoxPlayerTeam().addActionListener(e -> fillComboBoxXY());
+        plotForm.getComboBoxPlayerTeam().addActionListener(e -> onComboBoxPlayerTeam());
         plotForm.getButtonGenerate().addActionListener(e -> onButtonGenerate());
     }
     private static void init() {
         plotForm.getFrame().setVisible(true);
-        fillComboBoxPlayerTeam();
+    }
+    private void onComboBoxPlayerTeam() {
+        plotForm.getComboBoxX().removeAllItems();
+        plotForm.getComboBoxY().removeAllItems();
         fillComboBoxXY();
     }
     private void onButtonGenerate() {
@@ -55,7 +62,13 @@ public class PlotFormController {
         }
     }
     private void onButtonBack() {
-        MainFormController.getInstance();
+        if(Utils.PARAMS.get("CURRENT_USER") != null)
+            if (((User) Utils.PARAMS.get("CURRENT_USER")).getRole() == UserRole.ADMIN)
+                MainFormAdminController.getInstance();
+            else
+                MainFormUserController.getInstance();
+        else
+            MainFormController.getInstance();
         plotForm.getFrame().dispose();
     }
     private static void fillComboBoxPlayerTeam() {

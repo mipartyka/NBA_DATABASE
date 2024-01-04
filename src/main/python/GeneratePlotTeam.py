@@ -1,7 +1,7 @@
 import sys
 import psycopg2
 import pandas as pd
-import matplotlib.pyplot as plt
+import plotly.express as px
 
 db_name = 'cetphhnl'
 db_user = 'cetphhnl'
@@ -29,17 +29,11 @@ cur = conn.cursor()
 cur.execute("SET search_path TO nba_project")
 
 # Query the database
-df = pd.read_sql(f'SELECT id_team_stats, {column1}, {column2} FROM team_stats', conn)
+df = pd.read_sql(f'SELECT t."name" as team_name, ts.{column1}, ts.{column2} FROM team_stats ts JOIN team t on t.id_team_stats = ts.id_team_stats', conn)
 
 # Create a plot
-plt.scatter(df[column1], df[column2])
+fig = px.scatter(df, x=column1, y=column2, hover_data=['team_name'])
+fig.show()
 
-# Annotate points
-for i in range(len(df)):
-    plt.annotate(df['id_team_stats'].iloc[i], (df[column1].iloc[i], df[column2].iloc[i]))
-
-plt.xlabel(column1)
-plt.ylabel(column2)
-plt.show()
 # Close the connection
 conn.close()

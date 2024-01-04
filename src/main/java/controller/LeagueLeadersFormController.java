@@ -1,5 +1,7 @@
 package controller;
 
+import model.user.User;
+import model.user.UserRole;
 import model.utils.Utils;
 import view.LeagueLeadersForm;
 
@@ -66,7 +68,10 @@ public class LeagueLeadersFormController {
 
     private void onButtonBack() {
         if(Utils.PARAMS.get("CURRENT_USER") != null)
-            MainFormUserController.getInstance();
+            if (((User) Utils.PARAMS.get("CURRENT_USER")).getRole() == UserRole.ADMIN)
+                MainFormAdminController.getInstance();
+            else
+                MainFormUserController.getInstance();
         else
             MainFormController.getInstance();
         leagueLeadersForm.getFrame().dispose();
