@@ -29,7 +29,7 @@ cur = conn.cursor()
 cur.execute("SET search_path TO nba_project")
 
 # Query the database
-df = pd.read_sql(f'SELECT p."name" || \' \' || p.surname as player_name, ps.{column1}, ps.{column2} FROM player_stats ps JOIN player p on p.id_player_stats = ps.id_player_stats', conn)
+df = pd.read_sql(f'SELECT p."name" || \' \' || p.surname as player_name, ps."{column1}", ps."{column2}" FROM player_stats_advanced ps JOIN player p on p.id_player_stats = ps.id_player_stats', conn)
 
 # Create a plot
 fig = px.scatter(df, x=column1, y=column2, hover_data=['player_name'])

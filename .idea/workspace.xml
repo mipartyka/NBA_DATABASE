@@ -5,7 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c95aad3-e260-4f3f-bc65-2ac26d9d7971" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/AddGamesAdminForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/AddGamesAdminForm.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/GamesForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/GamesForm.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/LeagueLeadersForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/LeagueLeadersForm.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/LogInForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/LogInForm.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/MainForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainForm.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/MainFormAdmin.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainFormAdmin.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/MainFormUser.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainFormUser.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/PlotForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/PlotForm.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/RegisterForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/RegisterForm.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/StandingsForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/StandingsForm.form" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -208,6 +217,7 @@
       <workItem from="1704297205088" duration="12237000" />
       <workItem from="1704313789592" duration="94000" />
       <workItem from="1704328661659" duration="3793000" />
+      <workItem from="1704501953134" duration="2757000" />
     </task>
     <servers />
   </component>
