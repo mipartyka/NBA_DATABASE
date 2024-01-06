@@ -37,6 +37,7 @@ CREATE TABLE player_stats (
     trb INT,
     ast INT,
     stl INT,
+    blk INT,
     mp TIME,
     pf INT,
     fg INT,
@@ -50,7 +51,7 @@ CREATE TABLE player_stats (
     ft_pct DOUBLE precision,
     orb INT,
     drb INT,
-    turnovers INT,
+    tov INT,
     pf INT,
     plus_minus INT
 );
@@ -62,6 +63,7 @@ CREATE TABLE team_stats (
     trb INT,
     ast INT,
     stl INT,
+    blk INT,
     fg INT,
     fga INT,
     fg_pct DOUBLE precision,
