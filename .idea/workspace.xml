@@ -6,13 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0c95aad3-e260-4f3f-bc65-2ac26d9d7971" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IDMap.txt" beforeDir="false" afterPath="$PROJECT_DIR$/IDMap.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/AddGamesAdminFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AddGamesAdminFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/PlotFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/PlotFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/AddGamesAdminForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/AddGamesAdminForm.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/MainFormAdmin.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainFormAdmin.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/python/GeneratePlotTeam.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/python/GeneratePlotTeam.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/AddGamesAdminFormController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/AddGamesAdminFormController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,7 +207,7 @@
       <workItem from="1704243709696" duration="4111000" />
       <workItem from="1704297205088" duration="12237000" />
       <workItem from="1704313789592" duration="94000" />
-      <workItem from="1704328661659" duration="2861000" />
+      <workItem from="1704328661659" duration="3793000" />
     </task>
     <servers />
   </component>
