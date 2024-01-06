@@ -20,7 +20,7 @@
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Filter by:"/>
+          <text value="Filtruj po:"/>
         </properties>
       </component>
       <component id="f51ba" class="javax.swing.JComboBox" binding="comboBoxFilter">
@@ -40,7 +40,7 @@
           <grid row="2" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="1" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Back"/>
+          <text value="Wróć"/>
         </properties>
       </component>
       <scrollpane id="d7d12">
