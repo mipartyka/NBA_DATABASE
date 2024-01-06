@@ -76,16 +76,18 @@ public class PlotFormController {
         plotForm.getComboBoxPlayerTeam().addItem("Team");
     }
     private static void fillComboBoxXY() {
+        plotForm.getComboBoxX().removeAllItems();
+        plotForm.getComboBoxY().removeAllItems();
         if(plotForm.getComboBoxPlayerTeam().getSelectedItem().equals("Player")){
             List<String> playerStats = Arrays.asList("pts", "trb", "ast", "stl", "mp", "pf", "fg", "fga", "fg_pct",
-                    "fg3", "fg3a", "fg3_pct", "ft", "fta", "ft_pct", "orb", "drb", "tov", "plus_minus", "blk");
+                    "fg3", "fg3a", "fg3_pct", "ft", "fta", "ft_pct", "orb", "drb", "tov", "plus_minus", "blk", "ts_pct", "2p", "2pa", "2p_pct", "efg_pct");
             for(String stat : playerStats){
                 plotForm.getComboBoxX().addItem(stat);
                 plotForm.getComboBoxY().addItem(stat);
             }
         } else {
             List<String> teamStats = Arrays.asList("pts", "trb", "ast", "stl", "fg", "fga", "fg_pct",
-                    "fg3", "fg3a", "fg3_pct", "ft", "fta", "ft_pct", "orb", "drb", "tov", "blk");
+                    "fg3", "fg3a", "fg3_pct", "ft", "fta", "ft_pct", "orb", "drb", "tov", "blk", "ts_pct", "2p", "2pa", "2p_pct", "efg_pct");
             for(String stat : teamStats){
                 plotForm.getComboBoxX().addItem(stat);
                 plotForm.getComboBoxY().addItem(stat);
