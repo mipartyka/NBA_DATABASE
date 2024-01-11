@@ -1,7 +1,7 @@
 # NBA_DATABASE_PROJECT FOR AGH BAZY DANYCH 1
 
 ## Instalacja
-TODO
+Aby zainstalować potrzebne biblioteki należy wywołać pip install -r requirements.txt będąc w folderze z plikiem NBA_DATABASE.jar
 
 ## Interfejs Gościa
 Po włączeniu aplikacji wyświetla się okno główne gościa wygląda ono następująco:
