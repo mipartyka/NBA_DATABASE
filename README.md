@@ -13,6 +13,7 @@ Z tego poziomu możemy, lecz nie musimy się zalogować (bądź zarejestrować).
 - Ligowi Liderzy
 - Wykres
 - Tabele
+
 Wymienione opcje będą opisane niżej.
 
 ## Okno Logowania
