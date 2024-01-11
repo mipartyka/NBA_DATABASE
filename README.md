@@ -25,6 +25,7 @@ Na samej górze okna mamy przycisk umożliwiający rejestrację do systemu, któ
 Następnie mamy dwa pola tekstowe:
 - Login
 - Hasło
+
 Z czego hasło jest polem tekstowym ukrytym (zamiast tekstu widać gwiazdki).
 Po kliknięciu przycisku zaloguj następuję w
 
@@ -41,6 +42,7 @@ W Interfejsie Użytkownika widnieją te same opcje, które widniały w Interfejs
 
 Po zalogowaniu do systemu jako admin - (Trzeba przypisać manualnie z pozycji bazy danych), widzimy prakycznie to samo co przy zalogowaniu jako użytkownik, chociaż widac że jesteśmy adminem, oraz dostępna jest jeszcze jedna dodatkowa opcja:
 - Dodaj mecze
+
 Opcja ta również będzie opisana niżej.
 
 ## Okno Rejestracji
@@ -51,6 +53,7 @@ W oknie rejestracji możemy znaleźć przycisk Logowania oraz trzy pola tekstowe
 - Login
 - Hasło
 - Powtórz Hasło
+
 Hasło oraz Powtórz Hasło są polami tekstowymi ukrytymi.
 Po nacisnięciu przycisku Zarejestruj się następuje utworzenie nowego użytkowanika (jeśli login jest unikalny).
 
@@ -64,6 +67,7 @@ Po otworzeniu okna mecze z dowolnego poziomu użytkownika (Gość, Użytkownik, 
 - Dzień
 - Miesiąc
 - Rok
+
 Które służą do wybrania daty dnia, z którego chcemy wyświetlić mecze.
 Po naciśnięciu przycisku Szukaj, otrzymujemy listę meczów na dany dzień (Drużyny, oraz wyniki meczów). Możemy nacisnąć na dowolny z meczów aby wejść do Okna Box Score danego meczu.
 
@@ -83,6 +87,7 @@ Aby powrócić do oka mecze musimy zwyczajnie wyłączyć okno box score.
 W tym oknie widzimy dwie rozwijane listy odpowiadające za sortowanie:
 - Atrybut (statystyka)
 - Kolejność (Ascending, Descending)
+
 Oraz Tabele zawierającą informacje na temat statystyk sezonowych zawodników posortowaną względem wspomnainych list.
 
 ## Okno Wykresy
@@ -120,6 +125,7 @@ Poniżej znajdują się rozwinięcia skrótów używanych do opisu statystyk:
 - 2pa - oddane rzuty za 2 punkty
 - 2p_pct - procent trafionych rzutów za 2 punkty
 - efg_pct - effective field goal percentage*
+
 Przycisk Generuj powoduje generacje wykresu w przeglądarce.
 
 ## Okno Tabele
