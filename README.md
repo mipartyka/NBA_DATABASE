@@ -43,6 +43,9 @@ Po zalogowaniu do systemu jako admin - (Trzeba przypisać manualnie z pozycji ba
 Opcja ta również będzie opisana niżej.
 
 ## Okno Rejestracji
+
+![Alt text](DOC_IMAGES/Rejestracja_user.png)
+
 W oknie rejestracji możemy znaleźć przycisk Logowania oraz trzy pola tekstowe:
 - Login
 - Hasło
@@ -53,6 +56,9 @@ Po nacisnięciu przycisku Zarejestruj się następuje utworzenie nowego użytkow
 # Funkcjonalności
 
 ## Okno Mecze
+
+![Alt text](DOC_IMAGES/Okno_Mecze.png)
+
 Po otworzeniu okna mecze z dowolnego poziomu użytkownika (Gość, Użytkownik, Admin) widzimy trzy listy rozwijane:
 - Dzień
 - Miesiąc
@@ -61,19 +67,30 @@ Które służą do wybrania daty dnia, z którego chcemy wyświetlić mecze.
 Po naciśnięciu przycisku Szukaj, otrzymujemy listę meczów na dany dzień (Drużyny, oraz wyniki meczów). Możemy nacisnąć na dowolny z meczów aby wejść do Okna Box Score danego meczu.
 
 ## Okno Box Score
+
+![Alt text](DOC_IMAGES/Okno_Box_Score.png)
+
 W oknie Box Score dla danego meczu widzimy drużyny oraz wynik meczu, a poniżej dwa przyciski odpowiadające drużynom biorącym udział w meczu.
 Naciśnięcie jednego z nich powoduje wyswietlenie tabeli wynikowej dla tej drużyny (tzw. box score).
 Domyślnie wyświetlana jest tabela wynikowa dla drużyny gospodarzy.
 Aby powrócić do oka mecze musimy zwyczajnie wyłączyć okno box score.
 
 ## Okno Ligowi Liderzy
+
+![Alt text](DOC_IMAGES/Okno_Ligowi_Liderzy.png)
+
 W tym oknie widzimy dwie rozwijane listy odpowiadające za sortowanie:
 - Atrybut (statystyka)
 - Kolejność (Ascending, Descending)
 Oraz Tabele zawierającą informacje na temat statystyk sezonowych zawodników posortowaną względem wspomnainych list.
 
 ## Okno Wykresy
+
+![Alt text](DOC_IMAGES/Okno_Wykresy.png)
+
 W oknie Wykresy możemy wygenerować wykres punktowy zależności dwóch różnych statystyk dla wszystkich zawodników ligi na przykład tak wyglądałby wykres Punktów od Prób rzutów osobistych (baza zaktualizowana na 01.01.2024):
+
+![Alt text](DOC_IMAGES/Wykres.png)
 
 Wykres możemy wygenerować dla zawodników, bądź dla drużyn, wyboru tego dokonujemy w liście rozwijanej na górze okna. Wybieramy również statystyki dla osi X oraz Y.
 Poniżej znajdują się rozwinięcia skrótów używanych do opisu statystyk:
@@ -105,9 +122,15 @@ Poniżej znajdują się rozwinięcia skrótów używanych do opisu statystyk:
 Przycisk Generuj powoduje generacje wykresu w przeglądarce.
 
 ## Okno Tabele
+
+![Alt text](DOC_IMAGES/Okno_Tabele.png)
+
 W oknie Tabele widzimy Tabelę ligową oraz dwie listy rozwijane, które decydują o zawartości tabeli, mianowicie, w pierwszej liście wybieramy jaki rodzaj tabeli ma być wyświetlany (League - cała liga, Conference - konferencja, Division - dywizja), w drugiej liście wybieramy, dla której dokładnie części ligi chcemy wyświetlić tabelę.
 
 ## Okno Dodaj Mecze
+
+![Alt text](DOC_IMAGES/Okno_Dodaj_Mecze.png)
+
 W tym oknie dostępnym tylko dla użytkowników z rolą Admin możemy dodawać mecze do bazy danych na 3 różne sposoby, korzystając z osobiście napisanych skryptów scrape'ujących dane ze strony [Basketball Reference](https://www.basketball-reference.com/):
 1. Dodawanie meczu poprzez link do meczu na stronie https://www.basketball-reference.com/ np. https://www.basketball-reference.com/boxscores/202401100ATL.html, ewentualnie można podać samo ID meczu, czyli w tym przypadku 202401100ATL. Jeżeli podamy tekst niezgodny z tymi zasadami przycisk Dodaj pozostanie zablokowany.
 2. Dodawanie wszystkich meczów z dnia - dzień wybieramy poprzez listy rozwijane (dzień, miesiąc, rok).
