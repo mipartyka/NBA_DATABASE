@@ -5,7 +5,7 @@ To install all of the required libraries we need to run pip install -r req.txt.
 
 ## Interfejs Gościa
 Po włączeniu aplikacji wyświetla się okno główne gościa wygląda ono następująco:
-
+![Alt text](DOC_IMAGES/Interfejs_Gosc.png)
 Z tego poziomu możemy, lecz nie musimy się zalogować (bądź zarejestrować). Możemy również przejść do jednej z 4 opcji:
 - Mecze
 - Ligowi Liderzy
