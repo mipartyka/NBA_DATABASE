@@ -33,7 +33,7 @@ Po kliknięciu przycisku zaloguj następuję w
 
 ![Alt text](DOC_IMAGES/Interfejs_User.png)
 
-Po zalogowaniu do systemu widzimy że jesteśmy zalogowani jako: login (Logged in as: login). Z tej pozycji możemy się wylogować naciskając przycisk Wyloguj się. Po nacisnięciu tego przycisku spowrotem wyświetla się Okno Gościa.
+Po zalogowaniu do systemu widzimy że jesteśmy - "zalogowani jako: login" (Logged in as: login). Z tej pozycji możemy się wylogować naciskając przycisk Wyloguj się. Po nacisnięciu tego przycisku spowrotem wyświetla się Okno Gościa.
 W Interfejsie Użytkownika widnieją te same opcje, które widniały w Interfejsie Gościa.
 
 ## Interfejs Admina
