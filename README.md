@@ -1,7 +1,15 @@
 # NBA_DATABASE_PROJECT FOR AGH BAZY DANYCH 1
 
 ## Instalacja
-Aby zainstalować potrzebne biblioteki należy wywołać pip install -r requirements.txt będąc w folderze z plikiem NBA_DATABASE.jar.
+Aby zainstalować potrzebne biblioteki należy wywołać dla Linuxa:
+
+pip install -r requirements.txt
+
+Dla Windowsa:
+
+pip install -r .\requirements.txt 
+
+będąc w folderze z plikiem NBA_DATABASE.jar.
 
 UWAGA! JAVA RUNTIME 17+
 
