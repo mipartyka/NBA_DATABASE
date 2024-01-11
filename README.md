@@ -17,7 +17,9 @@ Wymienione opcje będą opisane niżej.
 
 ## Okno Logowania
 Po naciśnięciu przycisku Zaloguj Się otworzy nam się okno Logowania:
-# Image
+
+![Alt text](DOC_IMAGES/Logowanie_User.png)
+
 Na samej górze okna mamy przycisk umożliwiający rejestrację do systemu, która będzie opisywana niżej.
 Następnie mamy dwa pola tekstowe:
 - Login
@@ -26,10 +28,16 @@ Z czego hasło jest polem tekstowym ukrytym (zamiast tekstu widać gwiazdki).
 Po kliknięciu przycisku zaloguj następuję w
 
 ## Interfejs Użytkownika
+
+![Alt text](DOC_IMAGES/Interfejs_User.png)
+
 Po zalogowaniu do systemu widzimy że jesteśmy zalogowani jako: login (Logged in as: login). Z tej pozycji możemy się wylogować naciskając przycisk Wyloguj się. Po nacisnięciu tego przycisku spowrotem wyświetla się Okno Gościa.
 W Interfejsie Użytkownika widnieją te same opcje, które widniały w Interfejsie Gościa.
 
 ## Interfejs Admina
+
+![Alt text](DOC_IMAGES/Interfejs_Admin.png)
+
 Po zalogowaniu do systemu jako admin - (Trzeba przypisać manualnie z pozycji bazy danych), widzimy prakycznie to samo co przy zalogowaniu jako użytkownik, chociaż widac że jesteśmy adminem, oraz dostępna jest jeszcze jedna dodatkowa opcja:
 - Dodaj mecze
 Opcja ta również będzie opisana niżej.
