@@ -98,7 +98,7 @@ Przycisk Generuj powoduje generacje wykresu w przeglądarce.
 W oknie Tabele widzimy Tabelę ligową oraz dwie listy rozwijane, które decydują o zawartości tabeli, mianowicie, w pierwszej liście wybieramy jaki rodzaj tabeli ma być wyświetlany (League - cała liga, Conference - konferencja, Division - dywizja), w drugiej liście wybieramy, dla której dokładnie części ligi chcemy wyświetlić tabelę.
 
 ## Okno Dodaj Mecze
-W tym oknie dostępnym tylko dla użytkowników z rolą Admin możemy dodawać mecze do bazy danych na 3 różne sposoby, korzystając z osobiście napisanych skryptów scrape'ujących dane ze strony [Basketball](https://www.basketball-reference.com/):
+W tym oknie dostępnym tylko dla użytkowników z rolą Admin możemy dodawać mecze do bazy danych na 3 różne sposoby, korzystając z osobiście napisanych skryptów scrape'ujących dane ze strony [Basketball Reference](https://www.basketball-reference.com/):
 1. Dodawanie meczu poprzez link do meczu na stronie https://www.basketball-reference.com/ np. https://www.basketball-reference.com/boxscores/202401100ATL.html, ewentualnie można podać samo ID meczu, czyli w tym przypadku 202401100ATL. Jeżeli podamy tekst niezgodny z tymi zasadami przycisk Dodaj pozostanie zablokowany.
 2. Dodawanie wszystkich meczów z dnia - dzień wybieramy poprzez listy rozwijane (dzień, miesiąc, rok).
 3. Dodawanie całego tygodnia meczów - wybierając tydzień spośród listy rozwijanej.
