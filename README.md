@@ -2,6 +2,7 @@
 
 ## Instalacja
 Aby zainstalować potrzebne biblioteki należy wywołać pip install -r requirements.txt będąc w folderze z plikiem NBA_DATABASE.jar.
+
 UWAGA! JAVA RUNTIME 17+
 
 ## Interfejs Gościa
