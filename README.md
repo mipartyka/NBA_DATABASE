@@ -54,6 +54,41 @@ Po naciśnięciu przycisku Szukaj, otrzymujemy listę meczów na dany dzień (Dr
 W oknie Box Score dla danego meczu widzimy drużyny oraz wynik meczu, a poniżej dwa przyciski odpowiadające drużynom biorącym udział w meczu.
 Naciśnięcie jednego z nich powoduje wyswietlenie tabeli wynikowej dla tej drużyny (tzw. box score).
 Domyślnie wyświetlana jest tabela wynikowa dla drużyny gospodarzy.
+Aby powrócić do oka mecze musimy zwyczajnie wyłączyć okno box score.
 
 ## Okno Ligowi Liderzy
+W tym oknie widzimy dwie rozwijane listy odpowiadające za sortowanie:
+- Atrybut (statystyka)
+- Kolejność (Ascending, Descending)
+Oraz Tabele zawierającą informacje na temat statystyk sezonowych zawodników posortowaną względem wspomnainych list.
 
+## Okno Wykresy
+W oknie Wykresy możemy wygenerować wykres punktowy zależności dwóch różnych statystyk dla wszystkich zawodników ligi na przykład tak wyglądałby wykres Punktów od Prób rzutów osobistych (baza zaktualizowana na 01.01.2024):
+
+Wykres możemy wygenerować dla zawodników, bądź dla drużyn, wyboru tego dokonujemy w liście rozwijanej na górze okna. Wybieramy również statystyki dla osi X oraz Y.
+Poniżej znajdują się rozwinięcia skrótów używanych do opisu statystyk:
+- pts - Punkty
+- ast - Asysty
+- trb - Zbiórki
+- stl - Przechwyty
+- mp - rozegrane minuty (aktualnie nie działa)
+- pf - faule
+- fg - trafione rzuty
+- fga - oddane rzuty
+- fg_pct - procent trafionych rzutów
+- fg3 - trafione rzuty za 3 punkty
+- fg3a - oddane rzuty za 3 punkty
+- fg3_pct - procent trafionych rzutów za 3 punkty
+- ft - trafione rzuty osobiste
+- fta - oddane rzuty osobiste
+- ft_pct - procent trafionych rzutów osobistych
+- orb - zbiórki ofensywne
+- drb - zbiórki defensywne
+- tov - straty
+- plus_minus - różnica wyniku podczas pobytu na parkiecie
+- blk - bloki
+- ts_pct - procent oddanych rzutów biorący pod uwage wage rzutu (rzut za 3 ma wyższą wagę niż rzut za 2)
+- 2p - trafione rzuty za 2 punkty
+- 2pa - oddane rzuty za 2 punkty
+- 2p_pct - procent trafionych rzutów za 2 punkty
+- efg_pct - efective feild goal percentage*
